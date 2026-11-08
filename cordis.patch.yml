@@ -1,0 +1,7 @@
+# The Jelly Skin bundle.
+#
+# One row: the client-side skin layer. It registers a theme token override and
+# one shared ASCII-jellyfish canvas behind the whole application frame.
+- insert:
+    - id: dsh-jelly-skin
+      name: '@local/dsh-jelly-skin'
