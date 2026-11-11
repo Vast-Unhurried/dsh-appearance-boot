@@ -302,14 +302,20 @@
       return cells;
     }
 
-    /** The six animals, built on first use in normalised character space. */
-    let animaFields = null;
+    /**
+     * The animals, built on first use in normalised character space. A small
+     * tank (the Settings specimen) only pays for the species it can show; the
+     * full shell later extends the same cache to all six.
+     */
+    const animaFields = [];
 
-    function getAnimaFields() {
-      if (animaFields === null) {
-        animaFields = ANIMA_SPECIES.map((species) => ({ ...species, cells: buildAnima(species) }));
+    function getAnimaFields(limit = ANIMA_SPECIES.length) {
+      const count = Math.max(1, Math.min(limit, ANIMA_SPECIES.length));
+      while (animaFields.length < count) {
+        const species = ANIMA_SPECIES[animaFields.length];
+        animaFields.push({ ...species, cells: buildAnima(species) });
       }
-      return animaFields;
+      return animaFields.length === count ? animaFields : animaFields.slice(0, count);
     }
 
     function clamp(value, low, high) {
@@ -518,12 +524,16 @@
      * the pulse physics, the pointer current, the resize/theme lifecycle and the
      * cleanup.
      */
-    function mountJellyTank(wrap) {
+    function mountJellyTank(wrap, options = {}) {
       const dom = globalThis.document;
       const win = globalThis.window;
       if (wrap === null || dom === undefined || win === undefined || typeof dom.createElement !== 'function') {
         return () => {};
       }
+      const schoolSize =
+        Number.isInteger(options.schoolSize) && options.schoolSize > 0
+          ? Math.min(options.schoolSize, SCHOOL_SIZE)
+          : SCHOOL_SIZE;
       const canvas = dom.createElement('canvas');
       canvas.className = 'jelly-skin-canvas';
       wrap.appendChild(canvas);
@@ -631,7 +641,7 @@
       function rebuildSprites() {
         const next = [];
         try {
-          for (const species of getAnimaFields()) {
+          for (const species of getAnimaFields(schoolSize)) {
             next.push(buildSpeciesSprites(dom, species, colours, char));
           }
         } catch (error) {
@@ -649,7 +659,7 @@
       }
 
       function makeJelly(index) {
-        const fields = getAnimaFields();
+        const fields = getAnimaFields(schoolSize);
         const species = fields[index % fields.length];
         const slot = homes[index % homes.length];
         const layer = [0.88, 0.58, 0.74, 0.66, 0.96, 0.7][index % 6];
@@ -865,7 +875,7 @@
         dprRetryAt = 0;
 
         if (first) {
-          school = Array.from({ length: SCHOOL_SIZE }, (_, index) => makeJelly(index));
+          school = Array.from({ length: schoolSize }, (_, index) => makeJelly(index));
           for (const jelly of school) chooseSwimTarget(jelly, true);
           orderedSchool = school.slice().sort((left, right) => left.depth - right.depth);
           positionReport = school.map((jelly) => jelly.report);
@@ -1719,7 +1729,11 @@
         dom.addEventListener('visibilitychange', onVisibility);
         reduced?.addEventListener?.('change', onMotionChange);
 
-        resize();
+        // First layout and sprite rasterisation are deliberately deferred to
+        // the next animation frame: mounting the skin must not block the
+        // shell's first paint with ~40 sprite canvases. The callback starts the
+        // loop once the school exists.
+        scheduleResize();
         if (school.length > 0 && !reduced?.matches) start();
       } catch (error) {
         // If setup fails after listeners or observers were installed, do not

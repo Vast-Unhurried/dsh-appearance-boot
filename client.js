@@ -1,25 +1,26 @@
 window.__ModuleLoader__.load({
-  id: '@local/dsh-jelly-skin',
-  factory() {
+  id: '@local/dsh-appearance-boot',
+  factory(require) {
     var module = { exports: {} };
     var exports = module.exports;
     Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
 
     const CSS = `
-/* ── Jelly Skin · a system-wide still-water skin ──────────────────────────
+/* ── Appearance & Boot · the still-water skin ─────────────────────────────
    The skin is not a page: it owns the application's neutral materials and one
    shared school of ASCII jellyfish behind the whole frame. Light is paper;
    dark is graphite. The shell keeps every behaviour and every control. */
 
 /* ── palette ─────────────────────────────────────────────────────────────── */
-body[data-dsh-jelly-skin]{
+body[data-dsh-appearance-boot],
+.jelly-settings{
   --jelly-skin-ground:#f9fafb;
   --jelly-skin-sheet:#ffffff;
   --jelly-skin-sheet-2:#f1f3f5;
   --jelly-skin-paper:#ffffff;
   --jelly-skin-ink:#0f1115;
   --jelly-skin-ink-2:#61666b;
-  --jelly-skin-ink-3:#81858c;
+  --jelly-skin-ink-3:#6b7076;
   --jelly-skin-rule:rgba(15,17,21,.08);
   --jelly-skin-rule-2:rgba(15,17,21,.16);
   --jelly-skin-window:#0f1115;
@@ -48,7 +49,8 @@ body[data-dsh-jelly-skin]{
   --jelly-skin-jelly-teal:#2f6b7d;
   --jelly-skin-text:system-ui,-apple-system,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
 }
-body[data-dsh-jelly-skin][data-ds-dark-theme]{
+body[data-dsh-appearance-boot][data-ds-dark-theme],
+body[data-ds-dark-theme] .jelly-settings{
   --jelly-skin-ground:#151517;
   --jelly-skin-sheet:#1b1b1c;
   --jelly-skin-sheet-2:#232324;
@@ -85,83 +87,83 @@ body[data-dsh-jelly-skin][data-ds-dark-theme]{
 }
 
 /* ── the system shell through still water ───────────────────────────────── */
-body[data-dsh-jelly-skin]{
+body[data-dsh-appearance-boot]{
   background-color:var(--jelly-skin-ground);
   color:var(--jelly-skin-ink);
   font-family:var(--jelly-skin-text);
 }
-body[data-dsh-jelly-skin] header{
+body[data-dsh-appearance-boot] header{
   border-bottom:1px solid var(--jelly-skin-rule);
   background:transparent!important;
   box-shadow:none;
 }
-body[data-dsh-jelly-skin] button,
-body[data-dsh-jelly-skin] input,
-body[data-dsh-jelly-skin] textarea,
-body[data-dsh-jelly-skin] select{font-family:var(--jelly-skin-text);border-radius:0}
-body[data-dsh-jelly-skin] [data-composer-card],
-body[data-dsh-jelly-skin] [data-composer-card] *,
-body[data-dsh-jelly-skin] [role="dialog"],
-body[data-dsh-jelly-skin] [role="menu"],
-body[data-dsh-jelly-skin] [role="listbox"],
-body[data-dsh-jelly-skin] [role="alertdialog"],
-body[data-dsh-jelly-skin] [class*="card"],
-body[data-dsh-jelly-skin] [class*="Card"],
-body[data-dsh-jelly-skin] [class*="badge"],
-body[data-dsh-jelly-skin] [class*="Badge"],
-body[data-dsh-jelly-skin] [class*="pill"],
-body[data-dsh-jelly-skin] [class*="Pill"],
-body[data-dsh-jelly-skin] [class*="tag"],
-body[data-dsh-jelly-skin] [class*="Tag"]{border-radius:0}
-body[data-dsh-jelly-skin] [role="menu"],
-body[data-dsh-jelly-skin] [role="listbox"],
-body[data-dsh-jelly-skin] [role="dialog"],
-body[data-dsh-jelly-skin] [role="alertdialog"]{
+body[data-dsh-appearance-boot] button,
+body[data-dsh-appearance-boot] input,
+body[data-dsh-appearance-boot] textarea,
+body[data-dsh-appearance-boot] select{font-family:var(--jelly-skin-text);border-radius:0}
+body[data-dsh-appearance-boot] [data-composer-card],
+body[data-dsh-appearance-boot] [data-composer-card] *,
+body[data-dsh-appearance-boot] [role="dialog"],
+body[data-dsh-appearance-boot] [role="menu"],
+body[data-dsh-appearance-boot] [role="listbox"],
+body[data-dsh-appearance-boot] [role="alertdialog"],
+body[data-dsh-appearance-boot] [class*="card"],
+body[data-dsh-appearance-boot] [class*="Card"],
+body[data-dsh-appearance-boot] [class*="badge"],
+body[data-dsh-appearance-boot] [class*="Badge"],
+body[data-dsh-appearance-boot] [class*="pill"],
+body[data-dsh-appearance-boot] [class*="Pill"],
+body[data-dsh-appearance-boot] [class*="tag"],
+body[data-dsh-appearance-boot] [class*="Tag"]{border-radius:0}
+body[data-dsh-appearance-boot] [role="menu"],
+body[data-dsh-appearance-boot] [role="listbox"],
+body[data-dsh-appearance-boot] [role="dialog"],
+body[data-dsh-appearance-boot] [role="alertdialog"]{
   background:var(--jelly-skin-paper)!important;color:var(--jelly-skin-ink)!important;
   border:1px solid var(--jelly-skin-rule-2)!important;box-shadow:0 18px 44px -26px rgba(15,17,21,.32)!important;
   backdrop-filter:none!important
 }
-body[data-dsh-jelly-skin] [role="menu"],
-body[data-dsh-jelly-skin] [role="listbox"]{background:var(--jelly-skin-sheet-2)!important}
-body[data-dsh-jelly-skin] [role="menubar"]{background:var(--jelly-skin-sheet-2)!important;color:var(--jelly-skin-ink)!important;border-bottom:1px solid var(--jelly-skin-rule)!important;border-radius:0!important}
-body[data-dsh-jelly-skin] [role="menubar"] button{color:var(--jelly-skin-ink);border-radius:0}
-body[data-dsh-jelly-skin] [role="menu"] [role="menuitem"],
-body[data-dsh-jelly-skin] [role="menu"] button,
-body[data-dsh-jelly-skin] [role="listbox"] [role="option"],
-body[data-dsh-jelly-skin] [role="listbox"] button{color:var(--jelly-skin-ink);border-radius:0}
-body[data-dsh-jelly-skin] [role="menu"] [role="menuitem"]:hover,
-body[data-dsh-jelly-skin] [role="menu"] button:hover,
-body[data-dsh-jelly-skin] [role="listbox"] [role="option"]:hover,
-body[data-dsh-jelly-skin] [role="listbox"] button:hover{background:var(--jelly-skin-accent-soft)!important;color:var(--jelly-skin-ink)!important}
-body[data-dsh-jelly-skin] [role="tooltip"]{
+body[data-dsh-appearance-boot] [role="menu"],
+body[data-dsh-appearance-boot] [role="listbox"]{background:var(--jelly-skin-sheet-2)!important}
+body[data-dsh-appearance-boot] [role="menubar"]{background:var(--jelly-skin-sheet-2)!important;color:var(--jelly-skin-ink)!important;border-bottom:1px solid var(--jelly-skin-rule)!important;border-radius:0!important}
+body[data-dsh-appearance-boot] [role="menubar"] button{color:var(--jelly-skin-ink);border-radius:0}
+body[data-dsh-appearance-boot] [role="menu"] [role="menuitem"],
+body[data-dsh-appearance-boot] [role="menu"] button,
+body[data-dsh-appearance-boot] [role="listbox"] [role="option"],
+body[data-dsh-appearance-boot] [role="listbox"] button{color:var(--jelly-skin-ink);border-radius:0}
+body[data-dsh-appearance-boot] [role="menu"] [role="menuitem"]:hover,
+body[data-dsh-appearance-boot] [role="menu"] button:hover,
+body[data-dsh-appearance-boot] [role="listbox"] [role="option"]:hover,
+body[data-dsh-appearance-boot] [role="listbox"] button:hover{background:var(--jelly-skin-accent-soft)!important;color:var(--jelly-skin-ink)!important}
+body[data-dsh-appearance-boot] [role="tooltip"]{
   background:var(--jelly-skin-paper)!important;color:var(--jelly-skin-ink)!important;
   border:1px solid var(--jelly-skin-rule-2)!important;border-radius:6px!important;
   box-shadow:0 8px 22px -16px rgba(15,17,21,.4)!important;
   font-family:var(--jelly-skin-text)!important;font-size:12px!important;line-height:18px!important
 }
-body[data-dsh-jelly-skin] [data-composer-card] button[class*="primary"],
-body[data-dsh-jelly-skin] [data-composer-card] button[type="submit"]{
+body[data-dsh-appearance-boot] [data-composer-card] button[class*="primary"],
+body[data-dsh-appearance-boot] [data-composer-card] button[type="submit"]{
   color:var(--jelly-skin-window-ink)!important
 }
-body[data-dsh-jelly-skin] [data-composer-card] button[class*="primary"] svg,
-body[data-dsh-jelly-skin] [data-composer-card] button[type="submit"] svg{color:inherit!important}
-body[data-dsh-jelly-skin] [data-composer-card] button[class*="primary"][disabled],
-body[data-dsh-jelly-skin] [data-composer-card] button[type="submit"][disabled]{
+body[data-dsh-appearance-boot] [data-composer-card] button[class*="primary"] svg,
+body[data-dsh-appearance-boot] [data-composer-card] button[type="submit"] svg{color:inherit!important}
+body[data-dsh-appearance-boot] [data-composer-card] button[class*="primary"][disabled],
+body[data-dsh-appearance-boot] [data-composer-card] button[type="submit"][disabled]{
   background:var(--jelly-skin-sheet-2)!important;color:var(--jelly-skin-ink-3)!important;opacity:1!important
 }
-body[data-dsh-jelly-skin] [data-composer-card]{border:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-sheet);box-shadow:none}
-body[data-dsh-jelly-skin] [data-composer-card]:focus-within{border-color:var(--jelly-skin-accent)}
-body[data-dsh-jelly-skin] [data-composer-input]{caret-color:var(--jelly-skin-accent)}
-body[data-dsh-jelly-skin] ::selection{background:var(--jelly-skin-accent-soft);color:var(--jelly-skin-ink)}
-body[data-dsh-jelly-skin] [role="dialog"]>nav{border-right:1px solid var(--jelly-skin-rule)}
-body[data-dsh-jelly-skin] *{scrollbar-width:thin;scrollbar-color:var(--jelly-skin-rule-2) transparent}
-body[data-dsh-jelly-skin] *::-webkit-scrollbar{width:8px;height:8px}
-body[data-dsh-jelly-skin] *::-webkit-scrollbar-thumb{background:var(--jelly-skin-rule-2);border:2px solid transparent;background-clip:padding-box}
-body[data-dsh-jelly-skin] *::-webkit-scrollbar-track{background:transparent}
+body[data-dsh-appearance-boot] [data-composer-card]{border:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-sheet);box-shadow:none}
+body[data-dsh-appearance-boot] [data-composer-card]:focus-within{border-color:var(--jelly-skin-accent)}
+body[data-dsh-appearance-boot] [data-composer-input]{caret-color:var(--jelly-skin-accent)}
+body[data-dsh-appearance-boot] ::selection{background:var(--jelly-skin-accent-soft);color:var(--jelly-skin-ink)}
+body[data-dsh-appearance-boot] [role="dialog"]>nav{border-right:1px solid var(--jelly-skin-rule)}
+body[data-dsh-appearance-boot] *{scrollbar-width:thin;scrollbar-color:var(--jelly-skin-rule-2) transparent}
+body[data-dsh-appearance-boot] *::-webkit-scrollbar{width:8px;height:8px}
+body[data-dsh-appearance-boot] *::-webkit-scrollbar-thumb{background:var(--jelly-skin-rule-2);border:2px solid transparent;background-clip:padding-box}
+body[data-dsh-appearance-boot] *::-webkit-scrollbar-track{background:transparent}
 
 /* One cheap shadow keeps text legible over the moving water. Large multi-layer
    halos forced the whole shell to repaint blurred glyphs on every water frame. */
-body[data-dsh-jelly-skin] :where(header, nav, main, [data-shell-overlay]) {
+body[data-dsh-appearance-boot] :where(header, nav, main, [data-shell-overlay]) {
   text-shadow:0 1px 2px var(--jelly-skin-ground);
 }
 
@@ -169,23 +171,126 @@ body[data-dsh-jelly-skin] :where(header, nav, main, [data-shell-overlay]) {
 /* The rail and the centre stay open water. The right panel keeps the native
    solid tab surface; the panel element itself must stay transparent, because it
    stays in the frame while its dock slides out on collapse. */
-body[data-dsh-jelly-skin] [data-jelly-skin-frame]{background:transparent!important}
-body[data-dsh-jelly-skin] [data-jelly-skin-side],
-body[data-dsh-jelly-skin] [data-jelly-skin-center]{
+body[data-dsh-appearance-boot] [data-jelly-skin-frame]{background:transparent!important}
+body[data-dsh-appearance-boot] [data-jelly-skin-side],
+body[data-dsh-appearance-boot] [data-jelly-skin-center]{
   background:transparent!important;
   --dsw-alias-bg-base:transparent;
 }
-body[data-dsh-jelly-skin] [data-jelly-skin-right]{
+body[data-dsh-appearance-boot] [data-jelly-skin-right]{
   --dsw-alias-bg-base:var(--jelly-skin-ground);
 }
-body[data-dsh-jelly-skin] [data-jelly-skin-frame] > .jelly-skin-tank{
+body[data-dsh-appearance-boot] [data-jelly-skin-frame] > .jelly-skin-tank{
   position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;contain:strict;opacity:.8;
 }
-body[data-dsh-jelly-skin] .jelly-skin-canvas{
+body[data-dsh-appearance-boot] .jelly-skin-canvas{
   display:block;width:100%;height:100%;mix-blend-mode:multiply;opacity:.98;pointer-events:none;
 }
-body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
+body[data-dsh-appearance-boot][data-ds-dark-theme] .jelly-skin-canvas{
   mix-blend-mode:screen;
+}
+
+/* ── settings · 外观与启动 ──────────────────────────────────────────────
+   The page is a specimen sheet, not a second application: two numbered
+   chapters, exact rules, one live tank. It uses the skin's own palette even
+   when the skin switch is off, so the page always previews the material it
+   is configuring. */
+.jelly-settings{
+  box-sizing:border-box;display:flex;flex-direction:column;width:100%;max-width:none;min-width:0;min-height:100%;
+  padding:22px 26px 38px;background:var(--jelly-skin-ground);color:var(--jelly-skin-ink);
+  font:400 12.5px/1.65 var(--jelly-skin-text);container-type:inline-size;
+}
+.jelly-settings *{box-sizing:border-box}
+.jelly-settings ::selection{background:var(--jelly-skin-accent-soft);color:var(--jelly-skin-ink)}
+.jelly-settings :where(a,button):focus-visible{outline:2px solid var(--jelly-skin-focus);outline-offset:2px}
+.jelly-masthead{padding:0 0 14px;border-bottom:1px solid var(--jelly-skin-rule)}
+.jelly-title-row{display:flex;align-items:baseline;gap:12px;min-width:0}
+.jelly-settings h1{margin:0;font:600 31px/1.02 var(--jelly-skin-text);letter-spacing:-.04em}
+.jelly-lede{margin:10px 0 0;max-width:64ch;color:var(--jelly-skin-ink-2);font-size:12.5px;line-height:1.8}
+.jelly-index{display:flex;align-items:stretch;margin-top:16px;border-top:1px solid var(--jelly-skin-rule);border-bottom:1px solid var(--jelly-skin-rule)}
+.jelly-index-item{display:flex;flex:1 1 0;align-items:baseline;gap:8px;min-width:0;padding:11px 12px 10px;border-bottom:2px solid transparent;color:var(--jelly-skin-ink-2);text-decoration:none;font:500 13px/1.2 var(--jelly-skin-text)}
+.jelly-index-item + .jelly-index-item{border-left:1px solid var(--jelly-skin-rule)}
+.jelly-index-item:hover{color:var(--jelly-skin-ink);background:var(--jelly-skin-hover)}
+.jelly-index-no{flex:none;color:var(--jelly-skin-accent);font:500 11px/1 "Cascadia Mono",Consolas,monospace;letter-spacing:.04em}
+.jelly-index-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jelly-index-meta{margin-left:auto;color:var(--jelly-skin-ink-3);font:500 10px/1 "Cascadia Mono",Consolas,monospace;letter-spacing:.12em}
+.jelly-block{margin-top:30px;scroll-margin-top:18px}
+.jelly-block-head{display:flex;align-items:baseline;gap:9px;padding:0 0 7px;border-bottom:1px solid var(--jelly-skin-rule)}
+.jelly-block-no{flex:none;color:var(--jelly-skin-accent);font:600 10.5px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.05em}
+.jelly-block-head h2{margin:0;font:600 15px/1.3 var(--jelly-skin-text);letter-spacing:.02em}
+.jelly-block-rule{flex:1;min-width:10px;height:1px;margin-left:2px;background:var(--jelly-skin-rule)}
+.jelly-block-hint{margin:8px 0 0;max-width:66ch;color:var(--jelly-skin-ink-3);font-size:11.5px;line-height:1.7}
+.jelly-card{margin-top:13px;display:flex;flex-direction:column;align-items:stretch;border:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-sheet)}
+.jelly-card-main{min-width:0;padding:18px 20px 16px}
+.jelly-card-title-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+.jelly-card-title-row h3{margin:0;font:600 17px/1.25 var(--jelly-skin-text);letter-spacing:-.01em}
+.jelly-status{display:inline-flex;align-items:center;gap:5px;flex:none;padding:2px 7px;border:1px solid var(--jelly-skin-rule-2);color:var(--jelly-skin-ink-3);font:500 10px/1.5 "Cascadia Mono",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.jelly-status.is-on{color:var(--jelly-skin-ok);border-color:var(--jelly-skin-ok)}
+.jelly-status-dot{width:5px;height:5px;background:currentColor}
+.jelly-card-copy{margin:9px 0 0;max-width:52ch;color:var(--jelly-skin-ink-2);font-size:12px;line-height:1.78}
+.jelly-card-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.jelly-card-inline-note{color:var(--jelly-skin-ink-3);font-size:10.5px;line-height:1.6}
+.jelly-switch{position:relative;flex:none;width:40px;height:22px;padding:0;border:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-sheet-2);cursor:pointer;transition:background .18s ease,border-color .18s ease}
+.jelly-switch[aria-checked="true"]{background:var(--jelly-skin-ink);border-color:var(--jelly-skin-ink)}
+.jelly-switch-knob{position:absolute;top:3px;left:3px;width:14px;height:14px;background:var(--jelly-skin-ink-3);transition:transform .18s ease,background .18s ease}
+.jelly-switch[aria-checked="true"] .jelly-switch-knob{transform:translateX(18px);background:var(--jelly-skin-window-ink)}
+.jelly-button{display:inline-flex;align-items:center;gap:7px;height:29px;padding:0 12px;border:1px solid var(--jelly-skin-rule-2);background:transparent;color:var(--jelly-skin-ink);font:500 11px/1 var(--jelly-skin-text);cursor:pointer;transition:background .15s ease,border-color .15s ease}
+.jelly-button:hover:not(:disabled){background:var(--jelly-skin-accent-soft);border-color:var(--jelly-skin-ink-3)}
+.jelly-button:disabled{opacity:.45;cursor:default}
+.jelly-play{flex:none;display:block;color:var(--jelly-skin-accent)}
+.jelly-meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin:14px 0 0;padding:10px 0 0;border-top:1px solid var(--jelly-skin-rule);list-style:none}
+.jelly-meta li{display:flex;align-items:center;gap:6px;color:var(--jelly-skin-ink-3);font:500 10.5px/1.4 "Cascadia Mono",Consolas,monospace;letter-spacing:.04em}
+.jelly-meta li::before{content:"";width:4px;height:4px;background:var(--jelly-skin-accent)}
+.jelly-footnote{margin:10px 0 0;color:var(--jelly-skin-ink-3);font-size:10.5px;line-height:1.7}
+.jelly-footnote a{color:var(--jelly-skin-ink);text-decoration:underline;text-underline-offset:3px}
+.jelly-local-note{margin:28px 0 0;padding:12px 0 0;border-top:1px solid var(--jelly-skin-rule);color:var(--jelly-skin-ink-3);font:500 10.5px/1.6 "Cascadia Mono",Consolas,monospace;letter-spacing:.06em}
+
+/* the 550C specimen: a miniature terminal, not a second iframe */
+.jelly-boot-specimen{position:relative;min-height:206px;padding:12px 15px;overflow:hidden;border-top:1px solid var(--jelly-skin-rule-2);background:#050403;color:#d8c090;font:10px/1.5 "Cascadia Mono","SFMono-Regular",Consolas,monospace}
+.jelly-boot-specimen::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,rgba(232,160,32,.045) 0,rgba(232,160,32,.045) 1px,transparent 1px,transparent 3px);pointer-events:none}
+.jelly-mini-top{display:flex;justify-content:space-between;gap:8px;padding:0 0 5px;border-bottom:1px solid rgba(232,160,32,.3);color:#e8a020;font-size:8.5px;letter-spacing:.1em;white-space:nowrap}
+.jelly-mini-live{color:#e05030}
+.jelly-mini-grid{display:grid;grid-template-columns:62px minmax(0,1fr) 54px;gap:7px;margin-top:8px}
+.jelly-mini-col{display:flex;flex-direction:column;gap:4px}
+.jelly-mini-col b{color:#8a7248;font-size:7px;font-weight:500;letter-spacing:.1em}
+.jelly-mini-col i{height:3px;background:rgba(232,160,32,.22)}
+.jelly-mini-col i:nth-child(3){width:78%}
+.jelly-mini-main{display:flex;flex-direction:column;gap:3px;min-width:0;color:#a89058;font-size:7.5px;line-height:1.65;white-space:nowrap;overflow:hidden}
+.jelly-mini-main .is-hot{margin-top:5px;color:#ffc043;font-size:8.5px;letter-spacing:.12em;text-shadow:0 0 10px rgba(232,160,32,.6)}
+.jelly-mini-nodes{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;align-content:start}
+.jelly-mini-nodes i{width:100%;aspect-ratio:1;border:1px solid rgba(184,200,64,.45);background:rgba(184,200,64,.08);animation:jellyNode 2.4s ease-in-out infinite}
+@keyframes jellyNode{0%,100%{opacity:.24}50%{opacity:.82;background:rgba(184,200,64,.28)}}
+.jelly-mini-bar{display:flex;align-items:center;gap:8px;margin-top:11px;color:#8a7248;font-size:8px;letter-spacing:.1em}
+.jelly-mini-bar i{flex:1;height:5px;background:linear-gradient(90deg,#8a5e10,#ffc043);box-shadow:0 0 8px rgba(232,160,32,.35)}
+.jelly-mini-bar b{color:#ffc043;font-weight:400}
+
+/* the live skin specimen: a real mountJellyTank, in a small shell mock */
+.jelly-stage{display:grid;grid-template-columns:112px minmax(0,1fr);min-height:252px;overflow:hidden;border-top:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-ground)}
+.jelly-stage-rail{display:flex;flex-direction:column;gap:5px;padding:13px 10px;border-right:1px solid var(--jelly-skin-rule);background:var(--jelly-skin-sheet);font:500 10px/1.4 var(--jelly-skin-text)}
+.jelly-stage-brand{margin-bottom:8px;color:var(--jelly-skin-ink);font:600 8.5px/1.3 "Cascadia Mono",Consolas,monospace;letter-spacing:.1em;white-space:nowrap}
+.jelly-stage-row{padding:5px 7px;color:var(--jelly-skin-ink-3)}
+.jelly-stage-row.is-active{background:var(--jelly-skin-sheet-2);color:var(--jelly-skin-ink)}
+.jelly-stage-rail-foot{margin-top:auto;color:var(--jelly-skin-ink-3);font:500 7.5px/1.3 "Cascadia Mono",Consolas,monospace;letter-spacing:.1em}
+.jelly-stage-water{position:relative;min-width:0;overflow:hidden;padding:18px 18px 16px;background:var(--jelly-skin-ground)}
+.jelly-stage-toolbar{position:relative;z-index:1;display:flex;justify-content:space-between;gap:8px;color:var(--jelly-skin-ink-3);font:500 8px/1.4 "Cascadia Mono",Consolas,monospace;letter-spacing:.13em}
+.jelly-stage-title{position:relative;z-index:1;margin:27px 0 0;max-width:15ch;color:var(--jelly-skin-ink);font:500 20px/1.28 var(--jelly-skin-text);letter-spacing:-.035em;white-space:pre-line}
+.jelly-stage-composer{position:absolute;z-index:2;left:18px;right:18px;bottom:14px;padding:8px 10px;border:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-sheet);color:var(--jelly-skin-ink-3);font-size:10.5px}
+.jelly-settings .jelly-skin-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;mix-blend-mode:multiply;opacity:.84;pointer-events:none}
+body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:screen}
+@container (max-width:620px){
+  .jelly-stage{grid-template-columns:88px minmax(0,1fr);min-height:210px}
+}
+
+/* ── frame-wide boot overlay and the temporary skin-preview pill ────────── */
+.jelly-boot-frame{position:fixed;inset:0;width:100vw;height:100vh;border:0;z-index:2147483600;background:transparent;opacity:0;transition:opacity .35s ease}
+.jelly-boot-frame.is-ready{opacity:1}
+.jelly-boot-frame.is-leaving{opacity:0;transition:opacity .5s ease}
+.jelly-skin-preview-pill{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:2147483200;display:flex;align-items:center;gap:14px;padding:8px 10px 8px 14px;border:1px solid var(--dsw-alias-border-l2);background:var(--dsw-alias-bg-overlay);color:var(--dsw-alias-label-primary);box-shadow:var(--dsw-elevation-panel);font:500 11px/1.4 var(--jelly-skin-text);white-space:nowrap}
+.jelly-skin-preview-pill button{padding:3px 8px;border:1px solid var(--dsw-alias-border-l2);background:transparent;color:inherit;font:500 10px/1.4 var(--jelly-skin-text);cursor:pointer}
+.jelly-skin-preview-pill button:hover{background:var(--jelly-skin-accent-soft)}
+@media (prefers-reduced-motion:reduce){
+  .jelly-boot-frame{transition:none}
+  .jelly-mini-nodes i{animation:none;opacity:.5}
 }
 `;
 
@@ -493,14 +598,20 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
       return cells;
     }
 
-    /** The six animals, built on first use in normalised character space. */
-    let animaFields = null;
+    /**
+     * The animals, built on first use in normalised character space. A small
+     * tank (the Settings specimen) only pays for the species it can show; the
+     * full shell later extends the same cache to all six.
+     */
+    const animaFields = [];
 
-    function getAnimaFields() {
-      if (animaFields === null) {
-        animaFields = ANIMA_SPECIES.map((species) => ({ ...species, cells: buildAnima(species) }));
+    function getAnimaFields(limit = ANIMA_SPECIES.length) {
+      const count = Math.max(1, Math.min(limit, ANIMA_SPECIES.length));
+      while (animaFields.length < count) {
+        const species = ANIMA_SPECIES[animaFields.length];
+        animaFields.push({ ...species, cells: buildAnima(species) });
       }
-      return animaFields;
+      return animaFields.length === count ? animaFields : animaFields.slice(0, count);
     }
 
     function clamp(value, low, high) {
@@ -709,12 +820,16 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
      * the pulse physics, the pointer current, the resize/theme lifecycle and the
      * cleanup.
      */
-    function mountJellyTank(wrap) {
+    function mountJellyTank(wrap, options = {}) {
       const dom = globalThis.document;
       const win = globalThis.window;
       if (wrap === null || dom === undefined || win === undefined || typeof dom.createElement !== 'function') {
         return () => {};
       }
+      const schoolSize =
+        Number.isInteger(options.schoolSize) && options.schoolSize > 0
+          ? Math.min(options.schoolSize, SCHOOL_SIZE)
+          : SCHOOL_SIZE;
       const canvas = dom.createElement('canvas');
       canvas.className = 'jelly-skin-canvas';
       wrap.appendChild(canvas);
@@ -822,7 +937,7 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
       function rebuildSprites() {
         const next = [];
         try {
-          for (const species of getAnimaFields()) {
+          for (const species of getAnimaFields(schoolSize)) {
             next.push(buildSpeciesSprites(dom, species, colours, char));
           }
         } catch (error) {
@@ -840,7 +955,7 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
       }
 
       function makeJelly(index) {
-        const fields = getAnimaFields();
+        const fields = getAnimaFields(schoolSize);
         const species = fields[index % fields.length];
         const slot = homes[index % homes.length];
         const layer = [0.88, 0.58, 0.74, 0.66, 0.96, 0.7][index % 6];
@@ -1056,7 +1171,7 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
         dprRetryAt = 0;
 
         if (first) {
-          school = Array.from({ length: SCHOOL_SIZE }, (_, index) => makeJelly(index));
+          school = Array.from({ length: schoolSize }, (_, index) => makeJelly(index));
           for (const jelly of school) chooseSwimTarget(jelly, true);
           orderedSchool = school.slice().sort((left, right) => left.depth - right.depth);
           positionReport = school.map((jelly) => jelly.report);
@@ -1910,7 +2025,11 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
         dom.addEventListener('visibilitychange', onVisibility);
         reduced?.addEventListener?.('change', onMotionChange);
 
-        resize();
+        // First layout and sprite rasterisation are deliberately deferred to
+        // the next animation frame: mounting the skin must not block the
+        // shell's first paint with ~40 sprite canvases. The callback starts the
+        // loop once the school exists.
+        scheduleResize();
         if (school.length > 0 && !reduced?.matches) start();
       } catch (error) {
         // If setup fails after listeners or observers were installed, do not
@@ -1922,16 +2041,34 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
       return cleanup;
     }
 
-    // ── the system skin registration ────────────────────────────────────────
+    // ── the plugin: a quiet skin, a loud boot, one settings page ─────────────
     //
-    // A skin is a token layer plus one frame-wide canvas. It owns no page and
-    // changes no information architecture: every shipped control keeps its own
-    // position, behaviour and focus contract, while the shell's materials come
-    // from this palette. The layer is removed in one step when the plugin is
-    // disabled.
+    // Two independent features live in this bundle:
+    //
+    //   01 开机动画   a full-screen 550C boot sequence, played once per page load
+    //   02 皮肤       the system-wide still-water skin, applied to the whole shell
+    //
+    // Both switches and both previews are owned by the Settings section below.
+    // The skin is installed only while its switch (or its preview) is active, so
+    // turning it off removes every token, rule, marker and canvas in one step.
 
-    const SOURCE = '@local/dsh-jelly-skin';
-    const BODY_MARK = 'data-dsh-jelly-skin';
+    const React = require('react');
+    const h = React.createElement;
+    const { useEffect, useRef, useState } = React;
+
+    /** Dictionary namespace owned by this plugin. */
+    const NS = 'appearance-boot';
+    /** Marker on <body>; every skin rule is gated by it. */
+    const BODY_MARK = 'data-dsh-appearance-boot';
+    /** Where the browser remembers the two switches. Defaults are ON. */
+    const SKIN_KEY = 'dsh-appearance-boot:skin';
+    const BOOT_KEY = 'dsh-appearance-boot:boot';
+    /** Same-page notification for switch changes; storage events cover other tabs. */
+    const CHANGE_EVENT = 'dsh-appearance-boot:change';
+    /** Route served by the Host half. */
+    const BOOT_SRC = '/dsh-appearance-boot/boot/550c.html';
+
+    const SOURCE = '@local/dsh-appearance-boot';
 
     /** A token value that is the same in the daylight and night faces. */
     const both = (value) => ({ light: value, dark: value });
@@ -1940,8 +2077,9 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
      * The shell's alias tokens, re-pointed at the skin palette.
      *
      * Values reference variables declared by this plugin's stylesheet on
-     * `body[data-dsh-jelly-skin]`; the shell's own `data-ds-dark-theme` switch
-     * swaps those variables, so one layer serves both appearances.
+     * `body[data-dsh-appearance-boot]` (and on the Settings page itself); the shell's
+     * own `data-ds-dark-theme` switch swaps those variables, so one layer
+     * serves both appearances.
      */
     const TOKEN_OVERRIDES = {
       '--dsw-alias-bg-base': both('var(--jelly-skin-ground)'),
@@ -2256,84 +2394,1133 @@ body[data-dsh-jelly-skin][data-ds-dark-theme] .jelly-skin-canvas{
       };
     }
 
+
+
+    const zh = {
+      nav: '外观与启动',
+      title: '外观与启动',
+      lede: '一套安静的水，一次终端接管。开机动画与皮肤各自独立，随时开关或预览。',
+      indexBoot: '开机动画',
+      indexSkin: '皮肤',
+      sectionBoot: '开机动画',
+      sectionBootHint: '启动 Harness 时先播放一段终端接管，每次打开只播一次；点击画面或按 Esc 可跳过。',
+      sectionSkin: '皮肤',
+      sectionSkinHint: '一套覆盖整个 Harness 的中性皮肤，包含一群共享同一帧的 ASCII 水母。',
+      bootTitle: '550C 开机动画',
+      bootCopy: '从基站终端开始，47 个节点逐一覆写，最后定格于 SYSTEM IS REWRITTEN。约 10 秒；点击或按 Esc 随时跳过。',
+      bootNotePre: '参考 Voidpocket 的',
+      bootNotePost: '，已省略原片头的 logo 书写段落。',
+      skinTitle: '水母皮肤',
+      skinCopy: '中性纸感、直角材料与程序化 ASCII 水母。覆盖整个 Harness，明暗外观跟随 Harness 主题；不改变任何页面布局与操作。',
+      skinMetaOne: '全帧水族箱',
+      skinMetaTwo: '六种水母',
+      skinMetaThree: '120 Hz 模拟',
+      statusOn: '已开启',
+      statusOff: '已关闭',
+      toggleOn: '关闭',
+      toggleOff: '开启',
+      preview: '预览',
+      previewing: '播放中…',
+      previewSkin: '在界面中预览',
+      previewSkinBusy: '预览中…',
+      previewPill: '正在预览水母皮肤',
+      previewPillEnd: '结束预览',
+      skinOnHint: '已在界面中生效 · 下方为实时预览。',
+      localHint: '开关保存在本机浏览器，刷新后继续生效。',
+      stageLive: 'LIVE SPECIMEN',
+      stageTitle: '安静的水，\n和一群会呼吸的字。',
+      stageComposer: '问点什么…',
+      stageRailOne: '对话',
+      stageRailTwo: '文档',
+      stageRailThree: '待办',
+      switchAria: '切换{name}',
+      previewAria: '预览{name}',
+    };
+
+    const en = {
+      nav: 'Appearance & Boot',
+      title: 'Appearance & Boot',
+      lede: 'A quiet body of water and a terminal takeover. The boot animation and the skin are independent — switch or preview either one at any time.',
+      indexBoot: 'Boot animation',
+      indexSkin: 'Skin',
+      sectionBoot: 'Boot animation',
+      sectionBootHint: 'A terminal takeover plays once each time Harness starts; click the frame or press Esc to skip.',
+      sectionSkin: 'Skin',
+      sectionSkinHint: 'A neutral skin for the whole Harness, with one shared school of ASCII jellyfish behind every surface.',
+      bootTitle: '550C boot animation',
+      bootCopy: 'The base-station terminal opens, all 47 nodes are rewritten one by one, and the sequence settles on SYSTEM IS REWRITTEN. About 10 seconds; click or press Esc to skip.',
+      bootNotePre: 'Based on',
+      bootNotePost: ' by Voidpocket; the original logo-drawing opening is omitted.',
+      skinTitle: 'Jelly Skin',
+      skinCopy: 'Neutral paper, square materials and procedural ASCII jellyfish. It covers the entire Harness and follows the Harness light/dark appearance without changing any layout or control.',
+      skinMetaOne: 'Frame-wide tank',
+      skinMetaTwo: 'Six species',
+      skinMetaThree: '120 Hz simulation',
+      statusOn: 'On',
+      statusOff: 'Off',
+      toggleOn: 'Turn off',
+      toggleOff: 'Turn on',
+      preview: 'Preview',
+      previewing: 'Playing…',
+      previewSkin: 'Preview in the app',
+      previewSkinBusy: 'Previewing…',
+      previewPill: 'Previewing Jelly Skin',
+      previewPillEnd: 'End preview',
+      skinOnHint: 'Live in the app — the specimen below is a live preview.',
+      localHint: 'Switches are stored in this browser and survive a refresh.',
+      stageLive: 'LIVE SPECIMEN',
+      stageTitle: 'Quiet water,\nand a school of breathing type.',
+      stageComposer: 'Ask something…',
+      stageRailOne: 'Chat',
+      stageRailTwo: 'Docs',
+      stageRailThree: 'To-dos',
+      switchAria: 'Toggle {name}',
+      previewAria: 'Preview {name}',
+    };
+
+    // ── switches ─────────────────────────────────────────────────────────────
+
+    /**
+     * Last values written by this page. They keep the UI honest when storage
+     * throws (private windows, disabled site data) instead of letting the next
+     * read snap a just-flipped switch back to its default.
+     */
+    const memoryFlags = new Map();
+    let storageBlocked = false;
+
+    /** Read one switch; an unset or unreadable key keeps the feature on. */
+    function readFlag(key) {
+      if (!storageBlocked) {
+        try {
+          const storage = globalThis.localStorage;
+          if (storage === null || storage === undefined) storageBlocked = true;
+          else return storage.getItem(key) !== 'off';
+        } catch {
+          storageBlocked = true;
+        }
+      }
+      return memoryFlags.get(key) ?? true;
+    }
+
+    /** The complete live preference snapshot. */
+    function readSettings() {
+      return { skin: readFlag(SKIN_KEY), boot: readFlag(BOOT_KEY) };
+    }
+
+    const settingsListeners = new Set();
+
+    /** Persist one switch and wake every mounted settings page. */
+    function writeFlag(key, on) {
+      memoryFlags.set(key, on);
+      try {
+        const storage = globalThis.localStorage;
+        if (storage === null || storage === undefined) {
+          storageBlocked = true;
+        } else {
+          storage.setItem(key, on ? 'on' : 'off');
+          storageBlocked = false;
+        }
+      } catch {
+        storageBlocked = true;
+      }
+      // One notification path: the local event reaches every subscriber added
+      // by subscribeSettings. Keep the direct loop only as a fallback for a
+      // page where Event or dispatchEvent is unavailable.
+      let notified = false;
+      try {
+        if (typeof Event === 'function' && typeof globalThis.dispatchEvent === 'function') {
+          globalThis.dispatchEvent(new Event(CHANGE_EVENT));
+          notified = true;
+        }
+      } catch {
+        /* fall through to the direct listener loop */
+      }
+      if (!notified) {
+        for (const listener of settingsListeners) {
+          try {
+            listener();
+          } catch {
+            /* one broken subscriber must not stop the others */
+          }
+        }
+      }
+    }
+
+    function subscribeSettings(listener) {
+      settingsListeners.add(listener);
+      const onStorage = (event) => {
+        if (event.key === null) {
+          memoryFlags.clear();
+        } else if (event.key === SKIN_KEY || event.key === BOOT_KEY) {
+          if (event.newValue === null) memoryFlags.delete(event.key);
+          else memoryFlags.set(event.key, event.newValue !== 'off');
+        } else {
+          return;
+        }
+        listener();
+      };
+      const onLocal = () => listener();
+      globalThis.addEventListener?.('storage', onStorage);
+      globalThis.addEventListener?.(CHANGE_EVENT, onLocal);
+      return () => {
+        settingsListeners.delete(listener);
+        globalThis.removeEventListener?.('storage', onStorage);
+        globalThis.removeEventListener?.(CHANGE_EVENT, onLocal);
+      };
+    }
+
+    /** Subscribe a React view to the two switches. */
+    function useJellySettings() {
+      const [state, setState] = useState(readSettings);
+      useEffect(() => {
+        const update = () => setState(readSettings());
+        const stop = subscribeSettings(update);
+        // Catch a change that landed between render and subscription.
+        update();
+        return stop;
+      }, []);
+      return state;
+    }
+
+    // ── the skin binding ─────────────────────────────────────────────────────
+
+    /**
+     * Apply or remove the skin on demand.
+     *
+     * The stylesheet is always mounted (the Settings page uses its palette and
+     * its rule vocabulary); the body marker is the actual switch. The token
+     * override and the shared canvas are created only while the skin is active,
+     * and both are disposed when it goes off.
+     */
+    function createSkinBinding(ctx) {
+      let tokenDispose = null;
+      let surfaceDispose = null;
+      let markedBody = null;
+      let previewing = false;
+      let previewTimer = 0;
+      let previewEnd = null;
+      let pill = null;
+      let bodyObserver = null;
+
+      const isActive = () => readFlag(SKIN_KEY) || previewing;
+
+      const markBody = () => {
+        if (!isActive()) return;
+        const body = globalThis.document?.body ?? null;
+        if (body === null) return;
+        if (markedBody !== null && markedBody !== body) markedBody.removeAttribute(BODY_MARK);
+        body.setAttribute(BODY_MARK, 'true');
+        markedBody = body;
+      };
+
+      const unmarkBody = () => {
+        markedBody?.removeAttribute(BODY_MARK);
+        const body = globalThis.document?.body ?? null;
+        if (body !== null && body !== markedBody) body.removeAttribute(BODY_MARK);
+        markedBody = null;
+      };
+
+      const engage = () => {
+        // Mark the body before the canvas mount: mountJellyTank reads the
+        // palette from the canvas immediately, and the skin variables (and the
+        // tank's positioning rule) only exist while the body is marked.
+        markBody();
+        if (tokenDispose === null) tokenDispose = ctx.theme.overrideTokens(SOURCE, TOKEN_OVERRIDES);
+        if (surfaceDispose === null) surfaceDispose = installJellySurface();
+        // A body that appeared between the first mark and the mount still gets
+        // the marker without rebuilding a palette that is already correct.
+        markBody();
+      };
+
+      const disengage = () => {
+        try {
+          surfaceDispose?.();
+        } finally {
+          surfaceDispose = null;
+          try {
+            tokenDispose?.();
+          } finally {
+            tokenDispose = null;
+            unmarkBody();
+          }
+        }
+      };
+
+      const removePill = () => {
+        pill?.remove();
+        pill = null;
+      };
+
+      const showPill = () => {
+        const doc = globalThis.document;
+        if (!doc?.body || pill !== null) return;
+        pill = doc.createElement('div');
+        pill.className = 'jelly-skin-preview-pill';
+        pill.setAttribute('role', 'status');
+        const t = translate();
+        const label = doc.createElement('span');
+        label.textContent = t('previewPill');
+        const end = doc.createElement('button');
+        end.type = 'button';
+        end.textContent = t('previewPillEnd');
+        end.addEventListener('click', () => stopPreview());
+        pill.append(label, end);
+        doc.body.appendChild(pill);
+      };
+
+      const stopPreview = () => {
+        if (!previewing) return;
+        previewing = false;
+        if (previewTimer !== 0) {
+          clearTimeout(previewTimer);
+          previewTimer = 0;
+        }
+        const end = previewEnd;
+        previewEnd = null;
+        removePill();
+        try {
+          sync();
+        } finally {
+          try {
+            end?.();
+          } catch {
+            /* a preview listener must not break the teardown */
+          }
+        }
+      };
+
+      const sync = () => {
+        if (isActive()) engage();
+        else disengage();
+      };
+
+      /** Start a bounded, unpersisted skin preview. False when already on. */
+      const preview = (duration = 7000, onEnd = null) => {
+        if (readFlag(SKIN_KEY)) return false;
+        previewing = true;
+        previewEnd = typeof onEnd === 'function' ? onEnd : null;
+        try {
+          sync();
+          showPill();
+        } catch (error) {
+          // A failed surface must leave no half-preview behind: clear the
+          // flag and the callback so the next click retries from a clean
+          // state, then let the caller report the failure.
+          previewing = false;
+          previewEnd = null;
+          if (previewTimer !== 0) {
+            clearTimeout(previewTimer);
+            previewTimer = 0;
+          }
+          removePill();
+          try {
+            disengage();
+          } catch {
+            /* the original failure is the one worth reporting */
+          }
+          throw error;
+        }
+        if (previewTimer !== 0) clearTimeout(previewTimer);
+        previewTimer = setTimeout(stopPreview, duration);
+        return true;
+      };
+
+      if (typeof MutationObserver === 'function' && globalThis.document?.documentElement) {
+        bodyObserver = new MutationObserver(() => markBody());
+        bodyObserver.observe(globalThis.document.documentElement, { childList: true });
+      }
+
+      return {
+        sync,
+        preview,
+        stopPreview,
+        dispose() {
+          try {
+            stopPreview();
+          } finally {
+            if (previewTimer !== 0) {
+              clearTimeout(previewTimer);
+              previewTimer = 0;
+            }
+            previewEnd = null;
+            bodyObserver?.disconnect();
+            bodyObserver = null;
+            removePill();
+            disengage();
+          }
+        },
+      };
+    }
+
+    // ── the boot controller ──────────────────────────────────────────────────
+
+    /** Retire the Host half's solid first frame once the real show is on screen. */
+    function endFirstFrame() {
+      try {
+        globalThis.__dshJellyBootFirstFrame?.end?.();
+      } catch {
+        /* the cover is best-effort */
+      }
+    }
+
+    function createBootController() {
+      let frame = null;
+      let playing = false;
+      let fallback = 0;
+      let settle = null;
+      let started = false;
+      let listening = false;
+
+      const clearFallback = () => {
+        if (fallback !== 0) {
+          clearTimeout(fallback);
+          fallback = 0;
+        }
+      };
+
+      /** One set of window listeners for the controller, attached on demand. */
+      const attach = () => {
+        if (listening) return;
+        window.addEventListener('message', onMessage);
+        window.addEventListener('keydown', onKeyDown);
+        listening = true;
+      };
+      const detach = () => {
+        if (!listening) return;
+        window.removeEventListener('message', onMessage);
+        window.removeEventListener('keydown', onKeyDown);
+        listening = false;
+      };
+
+      const cleanup = () => {
+        clearFallback();
+        if (frame !== null) {
+          frame.removeEventListener('load', onLoad);
+          frame.remove();
+          frame = null;
+        }
+        detach();
+        playing = false;
+        if (settle !== null) {
+          settle(false);
+          settle = null;
+        }
+        // A failed mount or a plugin teardown must not leave the Host's solid
+        // first-frame cover on screen until its 6 s safety timer fires.
+        endFirstFrame();
+      };
+
+      const finish = () => {
+        if (!playing || frame === null) {
+          cleanup();
+          return;
+        }
+        const leaving = frame;
+        leaving.classList.add('is-leaving');
+        // If the iframe never loaded, there is no fade to wait for: retire the
+        // host cover now instead of leaving a black screen until the 6 s net.
+        if (!leaving.classList.contains('is-ready')) endFirstFrame();
+        clearFallback();
+        detach();
+        const done = settle;
+        settle = null;
+        playing = false;
+        // Capture this exact frame: a later play() must never be removed by
+        // the leave timer of the previous animation.
+        globalThis.setTimeout(() => {
+          leaving.removeEventListener('load', onLoad);
+          leaving.remove();
+          if (frame === leaving) frame = null;
+          done?.(true);
+        }, 520);
+      };
+
+      const onMessage = (event) => {
+        if (frame === null || event.source !== frame.contentWindow) return;
+        const origin = globalThis.location?.origin;
+        if (origin !== undefined && origin !== 'null' && event.origin !== origin) return;
+        if (event.data?.type === 'jelly-boot:done') finish();
+      };
+
+      const onKeyDown = (event) => {
+        if (event.key === 'Escape') finish();
+      };
+
+      function onLoad(event) {
+        const loaded = event?.currentTarget ?? frame;
+        requestAnimationFrame(() => {
+          if (loaded === null || frame !== loaded) return;
+          loaded.classList.add('is-ready');
+          // The iframe fades in over 350 ms. Keep the opaque host cover until
+          // the fade has finished, otherwise the app flashes through it.
+          globalThis.setTimeout(() => {
+            if (frame !== loaded) return;
+            globalThis.__dshJellyBootMounted = true;
+            endFirstFrame();
+          }, 360);
+        });
+      }
+
+      /** Play the 550C sequence; resolves true when it finished or was skipped. */
+      const play = ({ preview = false } = {}) => {
+        if (playing || !globalThis.document?.body) return Promise.resolve(false);
+        playing = true;
+        const doc = globalThis.document;
+        let nextFrame = null;
+        let promise = null;
+        try {
+          nextFrame = doc.createElement('iframe');
+          nextFrame.className = 'jelly-boot-frame';
+          nextFrame.title = translate()('bootTitle');
+          nextFrame.name = preview ? 'jelly-boot-preview' : 'jelly-boot';
+          // The page is self-contained: scripts and the same-origin handshake
+          // are all it needs. Keep popups, forms, top navigation, downloads and
+          // device capabilities outside its reach.
+          nextFrame.sandbox = 'allow-scripts allow-same-origin';
+          nextFrame.referrerPolicy = 'no-referrer';
+          nextFrame.addEventListener('load', onLoad);
+          promise = new Promise((resolve) => {
+            settle = resolve;
+          });
+          nextFrame.src = `${BOOT_SRC}${preview ? '?preview=1' : ''}`;
+          frame = nextFrame;
+          doc.body.appendChild(nextFrame);
+          attach();
+          fallback = globalThis.setTimeout(finish, 45000);
+          return promise;
+        } catch {
+          // A failed mount must not leave a half-inserted frame, listeners or
+          // a pending promise behind; the next preview can retry from scratch.
+          if (frame === nextFrame) frame = null;
+          nextFrame?.remove();
+          cleanup();
+          return promise ? promise.finally(() => {}) : Promise.resolve(false);
+        }
+      };
+
+      return {
+        /** Play once, as soon as the body exists, when the switch is on. */
+        autoStart() {
+          if (started) return () => {};
+          if (!readFlag(BOOT_KEY)) {
+            // The Host cover is normally absent when the switch is off, but
+            // the value can change between the injected head script and this
+            // module; never leave the solid first frame behind.
+            endFirstFrame();
+            return () => {};
+          }
+          if (globalThis.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) {
+            endFirstFrame();
+            return () => {};
+          }
+          started = true;
+          let cancelled = false;
+          const start = () => {
+            if (!cancelled) play().catch(() => endFirstFrame());
+          };
+          const doc = globalThis.document;
+          if (!doc) return () => {};
+          if (doc.readyState === 'loading') {
+            doc.addEventListener('DOMContentLoaded', start, { once: true });
+            return () => {
+              cancelled = true;
+              doc.removeEventListener('DOMContentLoaded', start);
+              cleanup();
+            };
+          }
+          start();
+          return () => {
+            cancelled = true;
+            cleanup();
+          };
+        },
+        preview() {
+          return play({ preview: true });
+        },
+        dispose() {
+          cleanup();
+        },
+      };
+    }
+
+    // ── the settings page ────────────────────────────────────────────────────
+
+    let translateFn = (key, values) => fillText(zh[key] ?? key, values);
+    let localeVersion = 0;
+    const localeListeners = new Set();
+
+    function fillText(template, values) {
+      if (values === undefined) return template;
+      return template.replace(/\{(\w+)\}/g, (match, name) => (values[name] === undefined ? match : String(values[name])));
+    }
+
+    function translate() {
+      return translateFn;
+    }
+
+    function useLocaleVersion() {
+      const [version, setVersion] = useState(localeVersion);
+      useEffect(() => {
+        const listener = () => setVersion(localeVersion);
+        localeListeners.add(listener);
+        if (localeVersion !== version) setVersion(localeVersion);
+        return () => {
+          localeListeners.delete(listener);
+        };
+        // `version` is read on mount; the listener tracks the live module value.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
+      return version;
+    }
+
+    /** The compact screen-and-play mark used by the Settings navigation row. */
+    function AppIcon({ size = 16, active = false }) {
+      return h(
+        'svg',
+        {
+          width: size,
+          height: size,
+          viewBox: '0 0 24 24',
+          fill: 'none',
+          'aria-hidden': 'true',
+          style: { opacity: active ? 1 : 0.86 },
+        },
+        h('rect', {
+          x: 2.8,
+          y: 4.2,
+          width: 18.4,
+          height: 15.6,
+          rx: 1,
+          stroke: 'currentColor',
+          strokeWidth: 1.4,
+        }),
+        h('path', {
+          d: 'M2.8 7.7h18.4',
+          stroke: 'currentColor',
+          strokeWidth: 1.1,
+          opacity: 0.5,
+        }),
+        h('path', {
+          d: 'M6.3 10.4 9.3 12.5 6.3 14.6Z',
+          fill: 'currentColor',
+        }),
+        h('rect', { x: 12.6, y: 10.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.9 }),
+        h('rect', { x: 16.8, y: 10.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.5 }),
+        h('rect', { x: 12.6, y: 14.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.5 }),
+        h('rect', { x: 16.8, y: 14.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.9 }),
+      );
+    }
+
+    function PlayGlyph() {
+      return h(
+        'svg',
+        { className: 'jelly-play', width: 8, height: 9, viewBox: '0 0 8 9', 'aria-hidden': 'true' },
+        h('path', { d: 'M0 0 8 4.5 0 9Z', fill: 'currentColor' }),
+      );
+    }
+
+    function EyeGlyph() {
+      return h(
+        'svg',
+        { className: 'jelly-play', width: 11, height: 9, viewBox: '0 0 12 9', 'aria-hidden': 'true' },
+        h('path', {
+          d: 'M0.8 4.5C1.9 2.1 3.8 1 6 1s4.1 1.1 5.2 3.5C10.1 6.9 8.2 8 6 8S1.9 6.9 0.8 4.5Z',
+          stroke: 'currentColor',
+          strokeWidth: 1.1,
+          fill: 'none',
+        }),
+        h('circle', { cx: 6, cy: 4.5, r: 1.5, fill: 'currentColor' }),
+      );
+    }
+
+    /** One labelled switch. */
+    function Toggle({ checked, label, title, onChange }) {
+      return h(
+        'button',
+        {
+          type: 'button',
+          className: 'jelly-switch',
+          role: 'switch',
+          'aria-checked': checked,
+          'aria-label': label,
+          title,
+          onClick: () => onChange(!checked),
+        },
+        h('span', { className: 'jelly-switch-knob', 'aria-hidden': 'true' }),
+      );
+    }
+
+    function Status({ on, t }) {
+      return h(
+        'span',
+        { className: `jelly-status${on ? ' is-on' : ''}` },
+        h('span', { className: 'jelly-status-dot', 'aria-hidden': 'true' }),
+        on ? t('statusOn') : t('statusOff'),
+      );
+    }
+
+    /** A miniature 550C terminal, drawn in CSS; no iframe while resting. */
+    function BootSpecimen() {
+      const nodes = [];
+      for (let index = 0; index < 24; index += 1) {
+        nodes.push(h('i', { key: index, style: { animationDelay: `${(index % 8) * 0.35}s` } }));
+      }
+      return h(
+        'div',
+        { className: 'jelly-boot-specimen', 'aria-hidden': 'true' },
+        h(
+          'div',
+          { className: 'jelly-mini-top' },
+          h('span', null, '◢ 550C // UAV-BS-07'),
+          h('span', { className: 'jelly-mini-live' }, '● REC'),
+        ),
+        h(
+          'div',
+          { className: 'jelly-mini-grid' },
+          h(
+            'div',
+            { className: 'jelly-mini-col' },
+            h('b', null, 'TELEMETRY'),
+            h('i', null),
+            h('i', null),
+            h('i', null),
+            h('i', null),
+          ),
+          h(
+            'div',
+            { className: 'jelly-mini-main' },
+            h('span', null, '[550C] 核心在线。'),
+            h('span', null, '[550C] 链路污染：是。'),
+            h('span', null, '[550C] 目标锁定：UAV-BS-07。'),
+            h('span', { className: 'is-hot' }, 'SYSTEM IS REWRITTEN'),
+          ),
+          h('div', { className: 'jelly-mini-nodes' }, nodes),
+        ),
+        h(
+          'div',
+          { className: 'jelly-mini-bar' },
+          h('span', null, 'OVERRIDE'),
+          h('i', null),
+          h('b', null, '100%'),
+        ),
+      );
+    }
+
+    /** The live skin specimen: a small shell mock with the real jelly canvas. */
+    function SkinSpecimen({ t, canvasRef }) {
+      return h(
+        'div',
+        { className: 'jelly-stage' },
+        h(
+          'div',
+          { className: 'jelly-stage-rail' },
+          h('span', { className: 'jelly-stage-brand' }, '◢ JELLY'),
+          h('span', { className: 'jelly-stage-row is-active' }, t('stageRailOne')),
+          h('span', { className: 'jelly-stage-row' }, t('stageRailTwo')),
+          h('span', { className: 'jelly-stage-row' }, t('stageRailThree')),
+          h('span', { className: 'jelly-stage-rail-foot' }, 'STILL WATER'),
+        ),
+        h(
+          'div',
+          { className: 'jelly-stage-water', ref: canvasRef },
+          h(
+            'div',
+            { className: 'jelly-stage-toolbar' },
+            h('span', null, 'STILL WATER / 01'),
+            h('span', null, t('stageLive')),
+          ),
+          h('p', { className: 'jelly-stage-title' }, t('stageTitle')),
+          h('div', { className: 'jelly-stage-composer' }, t('stageComposer')),
+        ),
+      );
+    }
+
+    function AppearanceBootSettings() {
+      useLocaleVersion();
+      const t = translate();
+      const state = useJellySettings();
+      const [bootBusy, setBootBusy] = useState(false);
+      const [skinBusy, setSkinBusy] = useState(false);
+      const canvasRef = useRef(null);
+      const aliveRef = useRef(true);
+      const skinBusyTimer = useRef(0);
+
+      // Mount one real jelly tank inside the specimen card. It is a true sample
+      // of the renderer, not a screenshot; when the card leaves the DOM the
+      // renderer's own disposer releases its sprites and listeners.
+      useEffect(() => {
+        const wrap = canvasRef.current;
+        if (!wrap) return undefined;
+        let dispose = null;
+        try {
+          dispose = mountJellyTank(wrap, { schoolSize: 4 });
+        } catch {
+          /* the specimen is decorative; a canvas failure leaves the card calm */
+        }
+        return () => {
+          try {
+            dispose?.();
+          } catch {
+            /* already gone */
+          }
+        };
+      }, []);
+
+      // Leaving Settings ends an unfinished skin preview; a preview is a look,
+      // not a saved state, and its floating pill must not outlive the page.
+      // The busy timer is cleared with the component so no setState lands after
+      // the page has gone.
+      useEffect(() => {
+        aliveRef.current = true;
+        return () => {
+          aliveRef.current = false;
+          if (skinBusyTimer.current !== 0) clearTimeout(skinBusyTimer.current);
+          skinBinding?.stopPreview?.();
+        };
+      }, []);
+
+      const choose = (key) => (next) => {
+        writeFlag(key, next);
+        if (key === SKIN_KEY && next) skinBinding?.stopPreview();
+      };
+
+      const previewBoot = async () => {
+        if (bootBusy) return;
+        setBootBusy(true);
+        try {
+          await bootController?.preview?.();
+        } catch {
+          // The controller cleans up a failed mount itself; the Settings page
+          // must simply become clickable again.
+        } finally {
+          if (aliveRef.current) setBootBusy(false);
+        }
+      };
+
+      const endSkinBusy = () => {
+        if (skinBusyTimer.current !== 0) {
+          clearTimeout(skinBusyTimer.current);
+          skinBusyTimer.current = 0;
+        }
+        if (aliveRef.current) setSkinBusy(false);
+      };
+
+      const previewSkin = () => {
+        if (skinBusy || state.skin) return;
+        let started = false;
+        try {
+          started = skinBinding?.preview?.(7000, endSkinBusy) === true;
+        } catch {
+          // A failed preview must fall back to an enabled button, never leave
+          // the settings page stuck in its busy state.
+          started = false;
+        }
+        setSkinBusy(started);
+        if (started) {
+          if (skinBusyTimer.current !== 0) clearTimeout(skinBusyTimer.current);
+          skinBusyTimer.current = setTimeout(endSkinBusy, 7100);
+        }
+      };
+
+      return h(
+        'section',
+        { className: 'jelly-settings', 'aria-labelledby': 'jelly-settings-title' },
+        h(
+          'header',
+          { className: 'jelly-masthead' },
+          h(
+            'div',
+            { className: 'jelly-title-row' },
+            h('h1', { id: 'jelly-settings-title' }, t('title')),
+          ),
+          h('p', { className: 'jelly-lede' }, t('lede')),
+        ),
+        h(
+          'nav',
+          { className: 'jelly-index', 'aria-label': t('title') },
+          h(
+            'a',
+            { className: 'jelly-index-item', href: '#jelly-settings-boot' },
+            h('span', { className: 'jelly-index-no' }, '01'),
+            h('span', { className: 'jelly-index-name' }, t('indexBoot')),
+            h('span', { className: 'jelly-index-meta' }, '550C'),
+          ),
+          h(
+            'a',
+            { className: 'jelly-index-item', href: '#jelly-settings-skin' },
+            h('span', { className: 'jelly-index-no' }, '02'),
+            h('span', { className: 'jelly-index-name' }, t('indexSkin')),
+            h('span', { className: 'jelly-index-meta' }, 'JELLY'),
+          ),
+        ),
+        // ── 01 开机动画 ──────────────────────────────────────────────────────
+        h(
+          'section',
+          { className: 'jelly-block', id: 'jelly-settings-boot', 'aria-labelledby': 'jelly-settings-boot-title' },
+          h(
+            'div',
+            { className: 'jelly-block-head' },
+            h('span', { className: 'jelly-block-no' }, '01'),
+            h('h2', { id: 'jelly-settings-boot-title' }, t('sectionBoot')),
+            h('span', { className: 'jelly-block-rule', 'aria-hidden': 'true' }),
+          ),
+          h('p', { className: 'jelly-block-hint' }, t('sectionBootHint')),
+          h(
+            'article',
+            { className: 'jelly-card' },
+            h(
+              'div',
+              { className: 'jelly-card-main' },
+              h(
+                'div',
+                { className: 'jelly-card-title-row' },
+                h('h3', null, t('bootTitle')),
+                h(Status, { on: state.boot, t }),
+              ),
+              h('p', { className: 'jelly-card-copy' }, t('bootCopy')),
+              h(
+                'div',
+                { className: 'jelly-card-actions' },
+                h(Toggle, {
+                  checked: state.boot,
+                  label: fillText(t('switchAria'), { name: t('bootTitle') }),
+                  title: state.boot ? t('toggleOn') : t('toggleOff'),
+                  onChange: choose(BOOT_KEY),
+                }),
+                h(
+                  'button',
+                  {
+                    type: 'button',
+                    className: 'jelly-button',
+                    onClick: previewBoot,
+                    disabled: bootBusy,
+                    'aria-label': fillText(t('previewAria'), { name: t('bootTitle') }),
+                  },
+                  h(PlayGlyph),
+                  bootBusy ? t('previewing') : t('preview'),
+                ),
+              ),
+            ),
+            h(BootSpecimen),
+          ),
+          h(
+            'p',
+            { className: 'jelly-footnote' },
+            t('bootNotePre'),
+            ' ',
+            h(
+              'a',
+              { href: 'https://github.com/Voidpocket/html_550c', target: '_blank', rel: 'noopener noreferrer' },
+              'html_550c',
+            ),
+            t('bootNotePost'),
+          ),
+        ),
+        // ── 02 皮肤 ──────────────────────────────────────────────────────────
+        h(
+          'section',
+          { className: 'jelly-block', id: 'jelly-settings-skin', 'aria-labelledby': 'jelly-settings-skin-title' },
+          h(
+            'div',
+            { className: 'jelly-block-head' },
+            h('span', { className: 'jelly-block-no' }, '02'),
+            h('h2', { id: 'jelly-settings-skin-title' }, t('sectionSkin')),
+            h('span', { className: 'jelly-block-rule', 'aria-hidden': 'true' }),
+          ),
+          h('p', { className: 'jelly-block-hint' }, t('sectionSkinHint')),
+          h(
+            'article',
+            { className: 'jelly-card' },
+            h(
+              'div',
+              { className: 'jelly-card-main' },
+              h(
+                'div',
+                { className: 'jelly-card-title-row' },
+                h('h3', null, t('skinTitle')),
+                h(Status, { on: state.skin, t }),
+              ),
+              h('p', { className: 'jelly-card-copy' }, t('skinCopy')),
+              h(
+                'div',
+                { className: 'jelly-card-actions' },
+                h(Toggle, {
+                  checked: state.skin,
+                  label: fillText(t('switchAria'), { name: t('skinTitle') }),
+                  title: state.skin ? t('toggleOn') : t('toggleOff'),
+                  onChange: choose(SKIN_KEY),
+                }),
+                state.skin
+                  ? h('span', { className: 'jelly-card-inline-note' }, t('skinOnHint'))
+                  : h(
+                      'button',
+                      {
+                        type: 'button',
+                        className: 'jelly-button',
+                        onClick: previewSkin,
+                        disabled: skinBusy,
+                        'aria-label': fillText(t('previewAria'), { name: t('skinTitle') }),
+                      },
+                      h(EyeGlyph),
+                      skinBusy ? t('previewSkinBusy') : t('previewSkin'),
+                    ),
+              ),
+              h(
+                'ul',
+                { className: 'jelly-meta' },
+                h('li', null, t('skinMetaOne')),
+                h('li', null, t('skinMetaTwo')),
+                h('li', null, t('skinMetaThree')),
+              ),
+            ),
+            h(SkinSpecimen, { t, canvasRef }),
+          ),
+        ),
+        h('p', { className: 'jelly-local-note' }, t('localHint')),
+      );
+    }
+
+    // ── plugin lifetime ──────────────────────────────────────────────────────
+
+    let skinBinding = null;
+    let bootController = null;
+
+    const inject = ['slots', 'locale', 'theme'];
+
     function apply(ctx) {
-      // The stylesheet owns the palette variables, the few shapes the shell
-      // cannot tokenise, and the one canvas layer. Register it before the token
-      // layer so the variables the overrides reference exist on first paint.
+      ctx.effect(() => ctx.locale.register(NS, { zh, en }), 'appearance & boot: dictionaries');
+      const bind = () => {
+        translateFn = ctx.locale.bind(NS);
+      };
+      bind();
+      ctx.effect(
+        () =>
+          ctx.locale.subscribe(() => {
+            bind();
+            localeVersion += 1;
+            for (const listener of localeListeners) {
+              try {
+                listener();
+              } catch {
+                /* one mounted view must not stop the rest from relabelling */
+              }
+            }
+          }),
+        'appearance & boot: locale binding',
+      );
+
+      // The stylesheet carries both the skin rules (gated by the body marker)
+      // and the Settings page's own palette. Removing the tag unloads all of it.
       ctx.effect(() => {
         const doc = globalThis.document;
         if (!doc) return () => {};
-        const head = doc.head ?? doc.documentElement;
-        if (head === null || head === undefined) return () => {};
         const tag = doc.createElement('style');
-        tag.dataset.plugin = SOURCE;
+        tag.dataset.plugin = '@local/dsh-appearance-boot';
         tag.textContent = CSS;
-        head.append(tag);
 
-        let markedBody = null;
         let active = true;
         let headObserver = null;
+        let rootObserver = null;
+        let watchedHead = null;
+
+        const currentHead = () => doc.head ?? doc.documentElement;
+        const ensureStyle = () => {
+          if (!active) return;
+          const head = currentHead();
+          if (head && typeof head.append === 'function' && tag.parentElement !== head) head.append(tag);
+        };
         const watchHead = () => {
+          if (!active || typeof MutationObserver !== 'function') return;
+          const head = currentHead();
+          if (head === watchedHead) return;
           headObserver?.disconnect();
-          const currentHead = doc.head ?? doc.documentElement;
-          if (!active || currentHead === null || currentHead === undefined || typeof MutationObserver !== 'function') return;
+          watchedHead = head;
+          if (!head) return;
           headObserver = new MutationObserver(() => {
             if (!active) return;
-            const nextHead = doc.head ?? doc.documentElement;
-            if (nextHead !== null && nextHead !== undefined && tag.parentElement !== nextHead) nextHead.append(tag);
+            ensureStyle();
             watchHead();
           });
-          headObserver.observe(currentHead, { childList: true });
+          headObserver.observe(head, { childList: true });
         };
+
+        ensureStyle();
         watchHead();
-        const markBody = () => {
-          if (!active) return;
-          const body = doc.body;
-          if (body === null) return;
-          body.setAttribute(BODY_MARK, 'true');
-          markedBody = body;
-        };
-        markBody();
-        // A Client module can be evaluated before the body exists. Mark it as
-        // soon as the document is parsed instead of leaving the skin unstyled.
-        const onReady = () => markBody();
-        if (markedBody === null) doc.addEventListener('DOMContentLoaded', onReady, { once: true });
-        // A document can replace <body> while a client module stays alive. Keep
-        // the marker on the live body instead of assuming the first one lasts.
-        const bodyObserver =
-          typeof MutationObserver === 'function' && doc.documentElement !== null && doc.documentElement !== undefined
-            ? new MutationObserver(() => {
-                if (!active) return;
-                watchHead();
-                const body = doc.body;
-                if (body === null) return;
-                if (body !== markedBody) markedBody?.removeAttribute(BODY_MARK);
-                if (!body.hasAttribute(BODY_MARK)) body.setAttribute(BODY_MARK, 'true');
-                markedBody = body;
-              })
-            : null;
-        bodyObserver?.observe(doc.documentElement, { childList: true });
+        // A replaced or temporarily removed <head> is a direct-child change of
+        // <html>; the head observer alone would stay attached to the old head
+        // and the stylesheet would never come back.
+        if (typeof MutationObserver === 'function' && doc.documentElement) {
+          rootObserver = new MutationObserver(() => {
+            if (!active) return;
+            ensureStyle();
+            watchHead();
+          });
+          rootObserver.observe(doc.documentElement, { childList: true });
+        }
+
         return () => {
           active = false;
           headObserver?.disconnect();
-          bodyObserver?.disconnect();
+          rootObserver?.disconnect();
           tag.remove();
-          doc.removeEventListener('DOMContentLoaded', onReady);
-          markedBody?.removeAttribute(BODY_MARK);
-          // Never leave the marker on the current body either.
-          if (doc.body !== markedBody) doc.body?.removeAttribute(BODY_MARK);
         };
-      }, 'jelly skin: stylesheet and marker');
+      }, 'appearance & boot: stylesheet');
 
-      // The token layer is the skin. `overrideTokens` stacks it above whichever
-      // built-in appearance the user chose, so light/dark/system all keep their
-      // own switch and the skin follows it.
-      ctx.effect(() => ctx.theme.overrideTokens(SOURCE, TOKEN_OVERRIDES), 'jelly skin: token layer');
+      const binding = createSkinBinding(ctx);
+      skinBinding = binding;
+      ctx.effect(() => {
+        const sync = () => binding.sync();
+        const stop = subscribeSettings(sync);
+        sync();
+        return () => {
+          stop();
+          try {
+            binding.dispose();
+          } finally {
+            if (skinBinding === binding) skinBinding = null;
+          }
+        };
+      }, 'appearance & boot: switch binding');
 
-      ctx.effect(() => installJellySurface(), 'jelly skin: shared school');
+      const controller = createBootController();
+      bootController = controller;
+      ctx.effect(() => {
+        const stopAuto = controller.autoStart();
+        return () => {
+          stopAuto();
+          try {
+            controller.dispose();
+          } finally {
+            if (bootController === controller) bootController = null;
+          }
+        };
+      }, 'appearance & boot: boot animation');
+
+      ctx.slots.inject('settings.section', () =>
+        ctx.slots.register(
+          {
+            name: 'settings.section',
+            id: 'appearance-boot',
+            order: 13,
+            locale: NS,
+            label: () => translate()('nav'),
+          },
+          AppearanceBootSettings,
+        ),
+      );
+      ctx.slots.inject('settings.section.icon', () =>
+        ctx.slots.register(
+          {
+            name: 'settings.section.icon',
+            id: 'appearance-boot',
+            order: 13,
+          },
+          AppIcon,
+        ),
+      );
     }
 
-    return { inject: ['theme'], apply };
+    return { inject, apply };
 
   },
 });

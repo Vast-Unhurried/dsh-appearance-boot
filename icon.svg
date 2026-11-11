@@ -1,19 +1,53 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-label="外观与启动">
   <defs>
-    <linearGradient id="jelly-tile" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#123a36"/>
-      <stop offset="1" stop-color="#071315"/>
+    <linearGradient id="appearance-tile" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#14181c"/>
+      <stop offset="1" stop-color="#05080a"/>
     </linearGradient>
-    <linearGradient id="jelly-bell" x1="18" y1="14" x2="46" y2="42" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#b4ffd0"/>
-      <stop offset="0.55" stop-color="#74d7c1"/>
-      <stop offset="1" stop-color="#2f9b87"/>
+    <linearGradient id="appearance-tile-light" x1="8" y1="4" x2="56" y2="60" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fbf8f1"/>
+      <stop offset="1" stop-color="#e6dfd2"/>
+    </linearGradient>
+    <linearGradient id="appearance-play" x1="17" y1="26" x2="28" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffd27a"/>
+      <stop offset="1" stop-color="#e8a020"/>
+    </linearGradient>
+    <linearGradient id="appearance-play-light" x1="17" y1="26" x2="28" y2="38" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#d89b2e"/>
+      <stop offset="1" stop-color="#a96b0b"/>
     </linearGradient>
   </defs>
-  <rect x="2" y="2" width="60" height="60" rx="15" fill="url(#jelly-tile)"/>
-  <path d="M15 29c0-9.7 7.7-17.5 17-17.5S49 19.3 49 29c0 3.1-2.7 5.1-6 5.7-2.1.4-4.1 1.4-6 3-1.8 1.5-4.2 1.5-6 0-1.9-1.6-3.9-2.6-6-3-3.3-.6-10-.9-10-5.7Z" fill="url(#jelly-bell)"/>
-  <path d="M22 36c-.8 6.4.3 11.5 3 16M29 38c-1.2 7.7-.4 12.7 1.8 18M36 38c1.2 7.7.4 12.7-1.8 18M43 36c.8 6.4-.3 11.5-3 16" stroke="#74d7c1" stroke-width="2.2" stroke-linecap="round" opacity=".9"/>
-  <circle cx="25" cy="27" r="1.5" fill="#071315" opacity=".62"/>
-  <circle cx="32" cy="24" r="1.5" fill="#071315" opacity=".62"/>
-  <circle cx="39" cy="27" r="1.5" fill="#071315" opacity=".62"/>
+
+  <style>
+    .ap-tile{fill:url(#appearance-tile)}
+    .ap-frame,.ap-rule{stroke:#e9e6dc}
+    .ap-play{fill:url(#appearance-play)}
+    .ap-ink{fill:#e9e6dc}
+    .ap-teal{fill:#7bd3c0}
+    .ap-amber{fill:#e8a020}
+    .ap-red{fill:#e05a4a}
+    .ap-mark{fill:#e8a020}
+    @media (prefers-color-scheme: light){
+      .ap-tile{fill:url(#appearance-tile-light)}
+      .ap-frame,.ap-rule{stroke:#1b1b1b}
+      .ap-play{fill:url(#appearance-play-light)}
+      .ap-ink{fill:#1b1b1b}
+      .ap-teal{fill:#2e8d7d}
+      .ap-amber{fill:#c28214}
+      .ap-red{fill:#b94335}
+      .ap-mark{fill:#c28214}
+    }
+  </style>
+
+  <rect class="ap-tile" x="2" y="2" width="60" height="60" rx="12"/>
+  <rect class="ap-frame" x="9" y="11" width="46" height="42" rx="2" stroke-width="1.8"/>
+  <path class="ap-rule" d="M9 18.5h46" stroke-width="1.2" opacity=".38"/>
+  <path class="ap-play" d="M16.5 27.5 26 33.2l-9.5 5.7V27.5Z"/>
+  <path class="ap-rule" d="M33 24.5h20" stroke-width="1" opacity=".24"/>
+  <rect class="ap-ink" x="33.5" y="28" width="8.8" height="8.8"/>
+  <rect class="ap-teal" x="43.2" y="28" width="8.8" height="8.8"/>
+  <rect class="ap-amber" x="33.5" y="37.7" width="8.8" height="8.8"/>
+  <rect class="ap-red" x="43.2" y="37.7" width="8.8" height="8.8"/>
+  <rect class="ap-mark" x="12.5" y="53" width="5" height="1.6" opacity=".8"/>
+  <rect class="ap-mark" x="19" y="53" width="1.6" height="1.6" opacity=".5"/>
 </svg>

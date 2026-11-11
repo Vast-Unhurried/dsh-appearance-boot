@@ -1,9 +1,9 @@
 {
-  "name": "@local/dsh-jelly-skin",
-  "version": "1.0.1",
+  "name": "@local/dsh-appearance-boot",
+  "version": "2.1.0",
   "private": true,
   "type": "module",
-  "description": "Jelly Skin: a system-wide still-water skin. Applies a neutral palette to the whole Harness UI and draws one shared school of ASCII jellyfish behind every surface.",
+  "description": "Appearance & Boot: a home for interface skins and boot animations. One Settings page holds independent chapters for each, with switches and live previews.",
   "icon": "./icon.svg",
   "exports": {
     ".": "./index.js",
@@ -14,9 +14,13 @@
   "files": [
     "index.js",
     "client.js",
+    "build.mjs",
+    "src/**",
     "cordis.patch.yml",
+    "boot/*.html",
     "locale/*.json",
-    "icon.svg"
+    "icon.svg",
+    "THIRD-PARTY-NOTICES.md"
   ],
   "dsh": {
     "bundle": {
@@ -26,8 +30,8 @@
       "platform": "web",
       "immediately": true,
       "inject": [
-        "@deepseek-ai/dsh-client-ui-theme",
-        "@deepseek-ai/dsh-client-ui-layout"
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-ui-theme"
       ]
     }
   }

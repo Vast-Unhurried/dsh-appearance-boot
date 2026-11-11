@@ -1,7 +1,7 @@
 /**
- * Build dsh-jelly-skin/client.js from the readable fragments in src/.
+ * Build this bundle's client.js from the readable fragments in src/.
  *
- *   node dsh-jelly-skin/build.mjs
+ *   node dsh-appearance-boot/build.mjs
  */
 import { readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
@@ -15,8 +15,8 @@ const read = (name) => readFileSync(new URL(name, ROOT), 'utf8').replace(/\r\n/g
 const files = ['src/style.js', 'src/jelly.js', 'src/plugin.js'];
 
 const header = `window.__ModuleLoader__.load({
-  id: '@local/dsh-jelly-skin',
-  factory() {
+  id: '@local/dsh-appearance-boot',
+  factory(require) {
     var module = { exports: {} };
     var exports = module.exports;
     Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });

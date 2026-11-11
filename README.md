@@ -1,70 +1,82 @@
-# Jelly Skin
+# Appearance & Boot
 
-`@local/dsh-jelly-skin` is a system-wide skin for the DSH Web GUI. It is the
-separate home of the neutral ASCII-jellyfish material that used to live inside
-`dsh-workbench`. This build targets DeepSeek Harness 0.2.2-rc.1 (Cordis 4.1).
+`@local/dsh-appearance-boot` (display name **Appearance & Boot** / **外观与启动**)
+bundles the system-wide still-water skin with the **550C boot animation**. Both
+are configured from one page: **设置 → 外观与启动**.
 
-## What it owns
+## Settings
 
-- The neutral shell palette, applied through `ctx.theme.overrideTokens`, so the
-  built-in light / dark / system preference remains the only appearance switch.
-- The square material rules the shell cannot express through a token alone
-  (menus, dialogs, tooltips, composer card, scrollbars, selection).
-- One `shell`-frame canvas with six procedural ASCII species (veil, lantern,
-  kelp, ghost, deep, pearl). Each animal patrols its own patch of water with a
-  true two-dimensional heading: it can swim up, down, sideways or turn back. A
-  quick bell contraction drives it along that heading; a long relaxation lets it
-  glide and sink while the ambient current carries it between beats.
-- The bell stays upright. Steering happens inside the water rather than by
-  spinning the animal: course changes are slow, thrust stays low until the
-  heading lines up, and the body only banks a few degrees. The bell deforms by
-  about a fifth of its width on a full stroke, with an overshooting rebound.
-- The skirt is split into three interleaved layers × two depth bands. A springy
-  tip lag, a travelling ripple, bell flare and pointer wake all feed its shear,
-  so the tentacles trail behind the stroke and react after the body has moved.
-- Six animals share a light collision field: each bell has mass and a radius,
-  contacts separate the bodies, exchange a damped impulse and feed a short bell
-  squash plus a tentacle jolt. Close passes also release a small bubble pair.
-- Pointer movement is a visible eddy with a hard outward hand and a tangential
-  swirl; moving it close to an animal pushes and rolls the bell while the skirt
-  streams behind. A click sends a visible pressure ring through the school,
-  releasing a larger bubble burst. Reduced motion still renders a composed frame.
-- Each species is rasterised once per theme into seven cached layers (one bell
-  plus six tentacle bands). The animation loop composites 42 images per frame
-  instead of repainting thousands of glyphs; a 120 Hz fixed-step simulation with
-  interpolated paint keeps the motion continuous through frame drops.
-- Its own plugin metadata, locale resources and icon.
+The page has two independent chapters, each with its own switch and preview:
 
-## What it does not own
+| Chapter | What it does |
+|---|---|
+| **01 开机动画** | Plays the 550C terminal takeover once per page load, then reveals the app. Preview plays it on demand without changing the startup switch. |
+| **02 皮肤** | Applies the neutral palette, square materials and the shared ASCII-jellyfish canvas to the whole Harness. Preview applies it to the live interface for seven seconds, then restores the previous state. |
 
-- Any page, navigation entry, board, setting or business document. It does not
-  register a slot, read the workbench DOM, or change information architecture.
-- The workbench's own layout. `dsh-workbench` uses native `--dsw-*` tokens; when
-  this skin is enabled every page inherits the neutral palette and the left rail
-  and centre stay open water, while the right sidebar keeps a solid native
-  surface only while it is open (and paints nothing once collapsed), so a
-  fullscreen panel never shows the conversation or the school through its
-  top-left corner. When it is disabled the workbench stays native.
+Both switches are stored in `localStorage` (`dsh-appearance-boot:boot` and
+`dsh-appearance-boot:skin`) and default to on. They survive a refresh and never
+touch page layout or information architecture.
 
-## Build and verify
+## 550C boot animation
 
-```text
-node dsh-jelly-skin/build.mjs        # rebuild client.js from src/
-node _verify/probe-skin.mjs         # reads DSH_WEB_URL; pass --url to override
-```
+The animation comes from [Voidpocket/html_550c](https://github.com/Voidpocket/html_550c)
+(MIT). This build starts after the original logo-drawing opening — the first few
+seconds with the SVG 550C mark are omitted — and then follows the source's
+terminal takeover as-is: access authorization, link monitor, signal pollution,
+firmware injection, the 47-node rewrite, and the final `SYSTEM IS REWRITTEN`
+card. It runs about ten seconds, can be skipped by clicking the frame or
+pressing `Esc`, and is played inside an isolated same-origin iframe so its
+stylesheet and script never touch the Harness shell. The final `SYSTEM IS
+REWRITTEN` frame is held just long enough to read, then the terminal glitches
+and collapses toward the CRT point without drawing a central singular point or
+radial light rays. A white-hot flash, shockwave rings, and a final scanline
+sweep hand the screen over to the already-loaded Harness interface.
 
-The probe drives the real app: it checks the body-level marker, the token
-overrides, the six species, visible travel, pointer response, click-through and
-the reduced-motion frame, and confirms that the workbench no longer owns the
-global appearance marker.
+The Host half also injects a solid `#050403` first frame into every index
+response while the animation is enabled, so DSH's own "HARNESS / Loading
+plugins…" card never flashes underneath. The client replaces that cover with the
+real iframe on the first frame.
+
+## The skin
+
+- The neutral shell palette is applied through `ctx.theme.overrideTokens`, so
+  the built-in light / dark / system preference remains the only appearance
+  switch.
+- Square material rules cover the shapes a token cannot express (menus, dialogs,
+  tooltips, composer card, scrollbars, selection).
+- One `shell`-frame canvas holds six procedural ASCII species (veil, lantern,
+  kelp, ghost, deep, pearl). Each animal swims with a true two-dimensional
+  heading, pulsing, gliding, banking slightly and trailing a layered skirt.
+- Pointer movement is a visible eddy; a click sends a pressure ring through the
+  school. Reduced motion holds a composed static frame.
+- Each species is rasterised once per theme into seven cached layers; the
+  animation loop composites sprites rather than repainting thousands of glyphs.
 
 ## Files
 
 | File | Role |
 |---|---|
-| `client.js` | Built client module: token layer, stylesheet, frame canvas. |
-| `index.js` | Host half; no Host work is needed for a visual skin. |
-| `src/style.js` | Palette, global material rules and tank styles. |
-| `src/jelly.js` | Procedural ASCII species and canvas renderer. |
-| `src/plugin.js` | Theme registration and frame attachment. |
+| `client.js` | Built Client module: settings page, skin runtime, boot controller. |
+| `index.js` | Host half: serves `boot/550c.html` and injects the first frame. |
+| `boot/550c.html` | Self-contained 550C page (logo opening removed). |
+| `src/style.js` | Palette, skin rules and Settings page styles. |
+| `src/jelly.js` | Procedural ASCII jellyfish renderer. |
+| `src/plugin.js` | Switches, settings UI and both runtimes. |
 | `cordis.patch.yml` | Inserts the one bundle row. |
+| `THIRD-PARTY-NOTICES.md` | Source and licence note for the 550C animation. |
+
+## Build and verify
+
+```text
+node dsh-appearance-boot/build.mjs   # rebuild client.js from src/
+node _verify/probe-jelly-v2.mjs      # drives the live app; uses DSH_GUI_URL or --url
+node _verify/boot-timing.mjs         # measures the standalone boot page
+```
+
+## Credits
+
+- 550C animation and original HTML: [Voidpocket](https://github.com/Voidpocket),
+  MIT. The plugin adaptation keeps the source's palette, panels and timeline
+  after the omitted logo opening.
+- The water skin, Appearance & Boot settings page and plugin engineering: this
+  workspace.

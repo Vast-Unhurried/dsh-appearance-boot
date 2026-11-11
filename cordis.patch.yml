@@ -1,7 +1,9 @@
-# The Jelly Skin bundle.
+# The Appearance & Boot bundle.
 #
-# One row: the client-side skin layer. It registers a theme token override and
-# one shared ASCII-jellyfish canvas behind the whole application frame.
+# One row: the plugin's Client half registers the Settings › 外观与启动 page,
+# the boot/skin switches, the boot controller and the still-water skin; its Host
+# half serves boot/550c.html and injects the matching first frame into every
+# index response.
 - insert:
-    - id: dsh-jelly-skin
-      name: '@local/dsh-jelly-skin'
+    - id: dsh-appearance-boot
+      name: '@local/dsh-appearance-boot'
