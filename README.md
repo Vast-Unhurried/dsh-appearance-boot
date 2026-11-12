@@ -4,6 +4,11 @@
 bundles the system-wide still-water skin with the **550C boot animation**. Both
 are configured from one page: **设置 → 外观与启动**.
 
+## Requirements
+
+DeepSeek Harness 0.2.2-rc.2 (Cordis 4.1) or a compatible build. The skin covers
+the card, hover-card, notification, menu and chat-code tokens added by rc.2.
+
 ## Settings
 
 The page has two independent chapters, each with its own switch and preview:

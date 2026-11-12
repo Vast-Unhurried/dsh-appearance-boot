@@ -1,8 +1,11 @@
 {
   "name": "@local/dsh-appearance-boot",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "private": true,
   "type": "module",
+  "engines": {
+    "dsh": ">=0.2.2-rc.2 <0.3.0"
+  },
   "description": "Appearance & Boot: a home for interface skins and boot animations. One Settings page holds independent chapters for each, with switches and live previews.",
   "icon": "./icon.svg",
   "exports": {
