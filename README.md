@@ -1,26 +1,33 @@
 # Appearance & Boot
 
 `@local/dsh-appearance-boot` (display name **Appearance & Boot** / **外观与启动**)
-bundles the system-wide still-water skin with the **550C boot animation**. Both
-are configured from one page: **设置 → 外观与启动**.
+bundles the system-wide still-water skin, the **550C boot animation** and a
+**task-completion sound**. All three are configured from one page:
+**设置 → 外观与启动**.
 
 ## Requirements
 
-DeepSeek Harness 0.2.2-rc.2 (Cordis 4.1) or a compatible build. The skin covers
-the card, hover-card, notification, menu and chat-code tokens added by rc.2.
+DeepSeek Harness 0.2.2-rc.5 (Cordis 4.1) or a compatible build. The skin covers
+the card, hover-card, notification, menu and chat-code tokens added by rc.2 and
+keeps the rc.5 token surface fully covered.
 
 ## Settings
 
-The page has two independent chapters, each with its own switch and preview:
+The page has three tab-filtered chapters. Clicking **01 开机动画** shows only the
+boot animation, **02 皮肤** only the skin, and **03 提示音** only the completion
+sound.
 
 | Chapter | What it does |
 |---|---|
 | **01 开机动画** | Plays the 550C terminal takeover once per page load, then reveals the app. Preview plays it on demand without changing the startup switch. |
 | **02 皮肤** | Applies the neutral palette, square materials and the shared ASCII-jellyfish canvas to the whole Harness. Preview applies it to the live interface for seven seconds, then restores the previous state. |
+| **03 提示音** | Plays a short tone when an Agent turn finishes. Four built-in tones are synthesised locally; volume is adjustable, and one custom audio file can be uploaded, replaced or removed. |
 
-Both switches are stored in `localStorage` (`dsh-appearance-boot:boot` and
-`dsh-appearance-boot:skin`) and default to on. They survive a refresh and never
-touch page layout or information architecture.
+The skin and boot switches are stored in `localStorage`
+(`dsh-appearance-boot:boot` and `dsh-appearance-boot:skin`) and default to on.
+The sound switch, volume and selected tone use their own keys and default to on,
+60% and the drop tone. They survive a refresh and never touch page layout or
+information architecture.
 
 ## 550C boot animation
 
@@ -57,16 +64,36 @@ real iframe on the first frame.
 - Each species is rasterised once per theme into seven cached layers; the
   animation loop composites sprites rather than repainting thousands of glyphs.
 
+## The completion sound
+
+- The trigger is `ctx.uiSession.sessionStatus`: a main Session that goes from
+  running to idle raises one completion edge. Host list baselines and
+  `api-session/status` events are already reconciled by that service, so the
+  plugin never polls and never touches Remote internals.
+- Subagent Sessions are separate tasks and are filtered out; only the parent
+  Session's final completion plays, so one task produces one sound.
+- The four built-in tones (`drop`, `chime`, `glass`, `signal`) are synthesised
+  with Web Audio envelopes; there are no audio assets, fetches or licences.
+- `03 提示音` owns the switch, a 0–100 volume slider, the tone picker and one
+  custom upload. The custom file is decoded and stored in IndexedDB
+  (`dsh-appearance-boot:sounds`) and never leaves the machine; a browser
+  without IndexedDB keeps it in memory for the current page only.
+- A user gesture primes the `AudioContext`. If the browser still refuses
+  autonomous playback, the completion attempt stays silent instead of raising
+  an error; the Settings preview always works from its own click.
+- Volume uses a perceptual curve over a near-full-scale master; a limiter keeps
+  100% loud without clipping, while custom audio takes a unity-style path.
+
 ## Files
 
 | File | Role |
 |---|---|
-| `client.js` | Built Client module: settings page, skin runtime, boot controller. |
+| `client.js` | Built Client module: settings page, skin runtime, boot controller, completion sound. |
 | `index.js` | Host half: serves `boot/550c.html` and injects the first frame. |
 | `boot/550c.html` | Self-contained 550C page (logo opening removed). |
 | `src/style.js` | Palette, skin rules and Settings page styles. |
 | `src/jelly.js` | Procedural ASCII jellyfish renderer. |
-| `src/plugin.js` | Switches, settings UI and both runtimes. |
+| `src/plugin.js` | Switches, settings UI, completion sound, skin and boot runtimes. |
 | `cordis.patch.yml` | Inserts the one bundle row. |
 | `THIRD-PARTY-NOTICES.md` | Source and licence note for the 550C animation. |
 
@@ -74,7 +101,11 @@ real iframe on the first frame.
 
 ```text
 node dsh-appearance-boot/build.mjs   # rebuild client.js from src/
-node _verify/probe-jelly-v2.mjs      # drives the live app; uses DSH_GUI_URL or --url
+node _verify/probe-tabs.mjs          # drives the live app; uses DSH_GUI_URL or --url
+node _verify/probe-sound.mjs         # checks the completion player in a mocked VM
+node _verify/probe-sound-upload.mjs  # uploads a WAV through the live Settings page
+node _verify/dead-code-appearance.mjs # dead declarations, CSS rules, locale keys
+node _verify/shot-shell.mjs          # captures the active skin on the shell
 node _verify/boot-timing.mjs         # measures the standalone boot page
 ```
 

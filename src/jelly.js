@@ -536,6 +536,7 @@
           : SCHOOL_SIZE;
       const canvas = dom.createElement('canvas');
       canvas.className = 'jelly-skin-canvas';
+      canvas.setAttribute('aria-hidden', 'true');
       wrap.appendChild(canvas);
       let surface = null;
       try {
@@ -593,6 +594,7 @@
       let accumulator = 0;
       let simTime = 0;
       let running = !dom.hidden;
+      let pausedForEmpty = false;
       let disposed = false;
       let colours = readColours();
       let school = [];
@@ -604,6 +606,7 @@
       let collisionCount = 0;
       let collisionDirty = false;
       let resizeQueued = false;
+      let resizeFrame = 0;
       let themeQueued = false;
 
       function readColours() {
@@ -799,6 +802,20 @@
         surface.clearRect(0, 0, width, height);
       }
 
+      /**
+       * A zero-sized layout pauses the loop without changing the canvas. When
+       * the same size returns, `resize()` has nothing to rebuild; resume the
+       * loop explicitly so a collapsed shell does not freeze the water until
+       * an unrelated resize or visibility change happens to restart it.
+       */
+      function resumeFromEmpty() {
+        if (!pausedForEmpty) return;
+        pausedForEmpty = false;
+        if (dom.hidden) return;
+        if (reduced?.matches) drawStatic();
+        else start();
+      }
+
       function resize() {
         if (disposed) return;
         const box = wrap.getBoundingClientRect();
@@ -808,6 +825,10 @@
         if (box.width < 1 || box.height < 1) {
           observedDpr = win.devicePixelRatio || 1;
           dprRetryAt = 0;
+          // A zero-sized tank is not visible: stop the animation loop instead
+          // of painting an offscreen canvas until the frame expands again.
+          pausedForEmpty = true;
+          stop();
           return;
         }
         const nextWidth = Math.max(1, Math.round(box.width));
@@ -822,6 +843,7 @@
         if (school.length > 0 && !sizeChanged && !boxChanged) {
           observedDpr = deviceDpr;
           dprRetryAt = 0;
+          resumeFromEmpty();
           return;
         }
         // A sidebar toggle can move the frame without changing its size. Update
@@ -837,6 +859,7 @@
           pointer.vy = 0;
           pointer.energy = 0;
           resetPointerHistory();
+          resumeFromEmpty();
           return;
         }
 
@@ -925,13 +948,15 @@
         syncPositions();
         if (!dom.hidden && (frame === 0 || reduced?.matches)) drawStatic();
         if (school.length > 0 && !reduced?.matches) start();
+        pausedForEmpty = false;
       }
 
       /** Coalesce the many resize notifications a drag produces into one layout read. */
       function scheduleResize() {
         if (resizeQueued || disposed) return;
         resizeQueued = true;
-        win.requestAnimationFrame(() => {
+        resizeFrame = win.requestAnimationFrame(() => {
+          resizeFrame = 0;
           resizeQueued = false;
           try {
             resize();
@@ -1497,7 +1522,7 @@
       }
 
       function start() {
-        if (disposed || frame !== 0 || !running || reduced?.matches) return;
+        if (disposed || frame !== 0 || !running || reduced?.matches || school.length === 0) return;
         last = 0;
         accumulator = 0;
         frame = win.requestAnimationFrame(step);
@@ -1696,6 +1721,11 @@
         disposed = true;
         running = false;
         stop();
+        if (resizeFrame !== 0) {
+          win.cancelAnimationFrame(resizeFrame);
+          resizeFrame = 0;
+        }
+        resizeQueued = false;
         resizeObserver?.disconnect();
         themeObserver?.disconnect();
         win.removeEventListener('pointermove', onPointerMove);

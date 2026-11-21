@@ -208,13 +208,15 @@ body[data-dsh-appearance-boot][data-ds-dark-theme] .jelly-skin-canvas{
 .jelly-settings h1{margin:0;font:600 31px/1.02 var(--jelly-skin-text);letter-spacing:-.04em}
 .jelly-lede{margin:10px 0 0;max-width:64ch;color:var(--jelly-skin-ink-2);font-size:12.5px;line-height:1.8}
 .jelly-index{display:flex;align-items:stretch;margin-top:16px;border-top:1px solid var(--jelly-skin-rule);border-bottom:1px solid var(--jelly-skin-rule)}
-.jelly-index-item{display:flex;flex:1 1 0;align-items:baseline;gap:8px;min-width:0;padding:11px 12px 10px;border-bottom:2px solid transparent;color:var(--jelly-skin-ink-2);text-decoration:none;font:500 13px/1.2 var(--jelly-skin-text)}
+.jelly-index-item{display:flex;flex:1 1 0;align-items:baseline;gap:8px;min-width:0;padding:11px 12px 10px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--jelly-skin-ink-2);text-align:left;text-decoration:none;font:500 13px/1.2 var(--jelly-skin-text);cursor:pointer}
 .jelly-index-item + .jelly-index-item{border-left:1px solid var(--jelly-skin-rule)}
 .jelly-index-item:hover{color:var(--jelly-skin-ink);background:var(--jelly-skin-hover)}
+.jelly-index-item[aria-selected="true"]{color:var(--jelly-skin-ink);border-bottom-color:var(--jelly-skin-accent);background:var(--jelly-skin-accent-soft)}
 .jelly-index-no{flex:none;color:var(--jelly-skin-accent);font:500 11px/1 "Cascadia Mono",Consolas,monospace;letter-spacing:.04em}
 .jelly-index-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .jelly-index-meta{margin-left:auto;color:var(--jelly-skin-ink-3);font:500 10px/1 "Cascadia Mono",Consolas,monospace;letter-spacing:.12em}
 .jelly-block{margin-top:30px;scroll-margin-top:18px}
+.jelly-block[hidden]{display:none}
 .jelly-block-head{display:flex;align-items:baseline;gap:9px;padding:0 0 7px;border-bottom:1px solid var(--jelly-skin-rule)}
 .jelly-block-no{flex:none;color:var(--jelly-skin-accent);font:600 10.5px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.05em}
 .jelly-block-head h2{margin:0;font:600 15px/1.3 var(--jelly-skin-text);letter-spacing:.02em}
@@ -241,6 +243,46 @@ body[data-dsh-appearance-boot][data-ds-dark-theme] .jelly-skin-canvas{
 .jelly-meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin:14px 0 0;padding:10px 0 0;border-top:1px solid var(--jelly-skin-rule);list-style:none}
 .jelly-meta li{display:flex;align-items:center;gap:6px;color:var(--jelly-skin-ink-3);font:500 10.5px/1.4 "Cascadia Mono",Consolas,monospace;letter-spacing:.04em}
 .jelly-meta li::before{content:"";width:4px;height:4px;background:var(--jelly-skin-accent)}
+
+/* the 03 sound board: a specimen of quiet signals, not a media player */
+.jelly-sound-board{margin-top:16px;padding-top:14px;border-top:1px solid var(--jelly-skin-rule)}
+.jelly-sound-board-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.jelly-sound-board-title{color:var(--jelly-skin-ink-3);font:500 9.5px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
+.jelly-sound-board-meta{color:var(--jelly-skin-ink-3);font:500 9px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.08em}
+.jelly-sound-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:9px}
+.jelly-sound-option{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0;padding:9px 10px 8px;border:1px solid var(--jelly-skin-rule-2);background:transparent;color:var(--jelly-skin-ink-2);font:inherit;text-align:left;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.jelly-sound-option:hover{border-color:var(--jelly-skin-ink-3);background:var(--jelly-skin-hover);color:var(--jelly-skin-ink)}
+.jelly-sound-option[aria-checked="true"]{border-color:var(--jelly-skin-ink);background:var(--jelly-skin-accent-soft);color:var(--jelly-skin-ink)}
+.jelly-sound-option.is-empty{border-style:dashed}
+.jelly-sound-wave{display:flex;align-items:flex-end;gap:2px;height:12px}
+.jelly-sound-wave i{display:block;width:2px;background:currentColor;opacity:.5}
+.jelly-sound-option[aria-checked="true"] .jelly-sound-wave i{opacity:.85}
+.jelly-sound-option-name{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 11px/1.2 var(--jelly-skin-text)}
+.jelly-sound-option-meta{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--jelly-skin-ink-3);font:500 8.5px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}
+.jelly-volume-row{display:flex;align-items:center;gap:12px;margin-top:15px;padding-top:13px;border-top:1px solid var(--jelly-skin-rule)}
+.jelly-volume{appearance:none;-webkit-appearance:none;flex:1;min-width:0;height:16px;margin:0;padding:0;background:transparent;cursor:pointer}
+.jelly-volume::-webkit-slider-runnable-track{height:1px;background:var(--jelly-skin-rule-2)}
+.jelly-volume::-moz-range-track{height:1px;background:var(--jelly-skin-rule-2)}
+.jelly-volume::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:10px;height:10px;margin-top:-4.5px;border:1px solid var(--jelly-skin-ink);background:var(--jelly-skin-sheet);cursor:pointer}
+.jelly-volume::-moz-range-thumb{width:10px;height:10px;border:1px solid var(--jelly-skin-ink);border-radius:0;background:var(--jelly-skin-sheet);cursor:pointer}
+.jelly-volume:focus-visible{outline:2px solid var(--jelly-skin-focus);outline-offset:4px}
+.jelly-volume-value{flex:none;width:36px;color:var(--jelly-skin-ink);font:500 10px/1 "Cascadia Mono",Consolas,monospace;text-align:right}
+.jelly-upload-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+.jelly-file{display:none}
+.jelly-button-quiet{border-color:transparent;color:var(--jelly-skin-ink-3)}
+.jelly-upload-file{min-width:0;max-width:30ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--jelly-skin-ink-2);font:500 10px/1.4 "Cascadia Mono",Consolas,monospace;letter-spacing:.02em}
+.jelly-upload-hint{margin:9px 0 0;color:var(--jelly-skin-ink-3);font-size:10.5px;line-height:1.6}
+.jelly-sound-note{margin:8px 0 0;color:var(--jelly-skin-ink-2);font-size:10.5px;line-height:1.6}
+.jelly-sound-specimen{position:relative;display:flex;flex-direction:column;gap:14px;min-height:150px;padding:12px 15px 13px;border-top:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-sheet-2);overflow:hidden}
+.jelly-sound-specimen::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,var(--jelly-skin-rule) 0,var(--jelly-skin-rule) 1px,transparent 1px,transparent 4px);opacity:.5;pointer-events:none}
+.jelly-sound-specimen-head{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;color:var(--jelly-skin-ink-3);font:500 8.5px/1.3 "Cascadia Mono",Consolas,monospace;letter-spacing:.14em}
+.jelly-sound-specimen-name{max-width:50%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--jelly-skin-ink-2);text-transform:uppercase}
+.jelly-sound-bars{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:2px;flex:1;min-height:52px;padding:8px 0}
+.jelly-sound-bars i{display:block;width:2px;max-height:100%;background:var(--jelly-skin-ink);opacity:.34}
+.jelly-sound-specimen.is-playing .jelly-sound-bars i{animation:jellySoundBar .38s ease-in-out infinite alternate;opacity:.75}
+.jelly-sound-specimen-foot{position:relative;z-index:1;display:flex;gap:18px;color:var(--jelly-skin-ink-3);font:500 8px/1.3 "Cascadia Mono",Consolas,monospace;letter-spacing:.12em}
+@keyframes jellySoundBar{from{transform:scaleY(.45);opacity:.35}to{transform:scaleY(1);opacity:.9}}
+
 .jelly-footnote{margin:10px 0 0;color:var(--jelly-skin-ink-3);font-size:10.5px;line-height:1.7}
 .jelly-footnote a{color:var(--jelly-skin-ink);text-decoration:underline;text-underline-offset:3px}
 .jelly-local-note{margin:28px 0 0;padding:12px 0 0;border-top:1px solid var(--jelly-skin-rule);color:var(--jelly-skin-ink-3);font:500 10.5px/1.6 "Cascadia Mono",Consolas,monospace;letter-spacing:.06em}
@@ -279,6 +321,10 @@ body[data-dsh-appearance-boot][data-ds-dark-theme] .jelly-skin-canvas{
 body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:screen}
 @container (max-width:620px){
   .jelly-stage{grid-template-columns:88px minmax(0,1fr);min-height:210px}
+}
+@container (max-width:460px){
+  .jelly-sound-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jelly-sound-specimen{min-height:150px}
 }
 
 /* ── frame-wide boot overlay and the temporary skin-preview pill ────────── */
@@ -832,6 +878,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
           : SCHOOL_SIZE;
       const canvas = dom.createElement('canvas');
       canvas.className = 'jelly-skin-canvas';
+      canvas.setAttribute('aria-hidden', 'true');
       wrap.appendChild(canvas);
       let surface = null;
       try {
@@ -889,6 +936,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       let accumulator = 0;
       let simTime = 0;
       let running = !dom.hidden;
+      let pausedForEmpty = false;
       let disposed = false;
       let colours = readColours();
       let school = [];
@@ -900,6 +948,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       let collisionCount = 0;
       let collisionDirty = false;
       let resizeQueued = false;
+      let resizeFrame = 0;
       let themeQueued = false;
 
       function readColours() {
@@ -1095,6 +1144,20 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         surface.clearRect(0, 0, width, height);
       }
 
+      /**
+       * A zero-sized layout pauses the loop without changing the canvas. When
+       * the same size returns, `resize()` has nothing to rebuild; resume the
+       * loop explicitly so a collapsed shell does not freeze the water until
+       * an unrelated resize or visibility change happens to restart it.
+       */
+      function resumeFromEmpty() {
+        if (!pausedForEmpty) return;
+        pausedForEmpty = false;
+        if (dom.hidden) return;
+        if (reduced?.matches) drawStatic();
+        else start();
+      }
+
       function resize() {
         if (disposed) return;
         const box = wrap.getBoundingClientRect();
@@ -1104,6 +1167,10 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         if (box.width < 1 || box.height < 1) {
           observedDpr = win.devicePixelRatio || 1;
           dprRetryAt = 0;
+          // A zero-sized tank is not visible: stop the animation loop instead
+          // of painting an offscreen canvas until the frame expands again.
+          pausedForEmpty = true;
+          stop();
           return;
         }
         const nextWidth = Math.max(1, Math.round(box.width));
@@ -1118,6 +1185,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         if (school.length > 0 && !sizeChanged && !boxChanged) {
           observedDpr = deviceDpr;
           dprRetryAt = 0;
+          resumeFromEmpty();
           return;
         }
         // A sidebar toggle can move the frame without changing its size. Update
@@ -1133,6 +1201,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
           pointer.vy = 0;
           pointer.energy = 0;
           resetPointerHistory();
+          resumeFromEmpty();
           return;
         }
 
@@ -1221,13 +1290,15 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         syncPositions();
         if (!dom.hidden && (frame === 0 || reduced?.matches)) drawStatic();
         if (school.length > 0 && !reduced?.matches) start();
+        pausedForEmpty = false;
       }
 
       /** Coalesce the many resize notifications a drag produces into one layout read. */
       function scheduleResize() {
         if (resizeQueued || disposed) return;
         resizeQueued = true;
-        win.requestAnimationFrame(() => {
+        resizeFrame = win.requestAnimationFrame(() => {
+          resizeFrame = 0;
           resizeQueued = false;
           try {
             resize();
@@ -1793,7 +1864,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       }
 
       function start() {
-        if (disposed || frame !== 0 || !running || reduced?.matches) return;
+        if (disposed || frame !== 0 || !running || reduced?.matches || school.length === 0) return;
         last = 0;
         accumulator = 0;
         frame = win.requestAnimationFrame(step);
@@ -1992,6 +2063,11 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         disposed = true;
         running = false;
         stop();
+        if (resizeFrame !== 0) {
+          win.cancelAnimationFrame(resizeFrame);
+          resizeFrame = 0;
+        }
+        resizeQueued = false;
         resizeObserver?.disconnect();
         themeObserver?.disconnect();
         win.removeEventListener('pointermove', onPointerMove);
@@ -2041,16 +2117,18 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       return cleanup;
     }
 
-    // ── the plugin: a quiet skin, a loud boot, one settings page ─────────────
+    // ── the plugin: a quiet skin, a loud boot, a small chime, one settings page
     //
-    // Two independent features live in this bundle:
+    // Three independent features live in this bundle:
     //
     //   01 开机动画   a full-screen 550C boot sequence, played once per page load
     //   02 皮肤       the system-wide still-water skin, applied to the whole shell
+    //   03 提示音     a local completion tone, played when an Agent turn ends
     //
-    // Both switches and both previews are owned by the Settings section below.
-    // The skin is installed only while its switch (or its preview) is active, so
-    // turning it off removes every token, rule, marker and canvas in one step.
+    // The switches, previews and the sound picker are owned by the Settings
+    // section below. The skin is installed only while its switch (or its preview)
+    // is active, so turning it off removes every token, rule, marker and canvas
+    // in one step.
 
     const React = require('react');
     const h = React.createElement;
@@ -2060,15 +2138,34 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
     const NS = 'appearance-boot';
     /** Marker on <body>; every skin rule is gated by it. */
     const BODY_MARK = 'data-dsh-appearance-boot';
-    /** Where the browser remembers the two switches. Defaults are ON. */
+    /** Where the browser remembers the three chapters. The switches default to ON. */
     const SKIN_KEY = 'dsh-appearance-boot:skin';
     const BOOT_KEY = 'dsh-appearance-boot:boot';
+    const SOUND_KEY = 'dsh-appearance-boot:sound';
+    const SOUND_VOLUME_KEY = 'dsh-appearance-boot:sound-volume';
+    const SOUND_CHOICE_KEY = 'dsh-appearance-boot:sound-choice';
+    /** One uploaded sound lives in IndexedDB; it never leaves this device. */
+    const SOUND_DB_NAME = 'dsh-appearance-boot:sounds';
+    const SOUND_DB_STORE = 'custom';
+    const SOUND_CUSTOM_MAX_BYTES = 8 * 1024 * 1024;
+    const SOUND_VOLUME_DEFAULT = 60;
+    /** Perceptual loudness curve: 100% is a near-full-scale notification. */
+    const SOUND_BUILTIN_GAIN = 7.6;
+    const SOUND_CUSTOM_GAIN = 3;
     /** Same-page notification for switch changes; storage events cover other tabs. */
     const CHANGE_EVENT = 'dsh-appearance-boot:change';
     /** Route served by the Host half. */
     const BOOT_SRC = '/dsh-appearance-boot/boot/550c.html';
 
     const SOURCE = '@local/dsh-appearance-boot';
+
+    /** The built-in completion tones: synthesised in the page, never fetched. */
+    const BUILTIN_SOUNDS = [
+      { id: 'drop', label: 'soundDrop', meta: 'DROP' },
+      { id: 'chime', label: 'soundChime', meta: 'CHIME' },
+      { id: 'glass', label: 'soundGlass', meta: 'GLASS' },
+      { id: 'signal', label: 'soundSignal', meta: 'SIGNAL' },
+    ];
 
     /** A token value that is the same in the daylight and night faces. */
     const both = (value) => ({ light: value, dark: value });
@@ -2472,23 +2569,41 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       return () => {
         disposed = true;
         if (observer !== null) observer.disconnect();
-        tearDownFrame();
-        frame = null;
+        try {
+          tearDownFrame();
+        } catch {
+          /* decorative teardown must not break the plugin lifecycle */
+        } finally {
+          frame = null;
+        }
       };
     }
 
+    /** The three Settings chapters and their addressable hashes. */
+    const TAB_HASH = { boot: '#jelly-settings-boot', skin: '#jelly-settings-skin', sound: '#jelly-settings-sound' };
 
+    /** Read a tab only when the hash names one; an unrelated hash keeps the default. */
+    function tabFromLocation() {
+      const hash = globalThis.location?.hash;
+      if (hash === TAB_HASH.skin) return 'skin';
+      if (hash === TAB_HASH.sound) return 'sound';
+      if (hash === TAB_HASH.boot) return 'boot';
+      return null;
+    }
 
     const zh = {
       nav: '外观与启动',
       title: '外观与启动',
-      lede: '一套安静的水，一次终端接管。开机动画与皮肤各自独立，随时开关或预览。',
+      lede: '一套安静的水，一次终端接管，一声收尾的轻响。开机动画、皮肤与提示音各自独立，随时开关或预览。',
       indexBoot: '开机动画',
       indexSkin: '皮肤',
+      indexSound: '提示音',
       sectionBoot: '开机动画',
       sectionBootHint: '启动 Harness 时先播放一段终端接管，每次打开只播一次；点击画面或按 Esc 可跳过。',
       sectionSkin: '皮肤',
       sectionSkinHint: '一套覆盖整个 Harness 的中性皮肤，包含一群共享同一帧的 ASCII 水母。',
+      sectionSound: '提示音',
+      sectionSoundHint: '任务完成时播放一段简短提示音；可选内置音色、调节音量，或上传自己的音频。',
       bootTitle: '550C 开机动画',
       bootCopy: '从基站终端开始，47 个节点逐一覆写，最后定格于 SYSTEM IS REWRITTEN。约 10 秒；点击或按 Esc 随时跳过。',
       bootNotePre: '参考 Voidpocket 的',
@@ -2498,6 +2613,31 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       skinMetaOne: '全帧水族箱',
       skinMetaTwo: '六种水母',
       skinMetaThree: '120 Hz 模拟',
+      soundTitle: '任务完成提示音',
+      soundCopy: '每次 Agent 完成回答后播放一次。内置音色由浏览器本机合成，自定义音频只保存在本机，不会上传到任何服务器。',
+      soundPickLabel: '提示音',
+      soundPickMeta: '选择即试听',
+      soundVolume: '音量',
+      soundVolumeAria: '提示音音量',
+      soundDrop: '水滴',
+      soundChime: '风铃',
+      soundGlass: '琉璃',
+      soundSignal: '信标',
+      soundCustom: '自定义',
+      soundUpload: '上传音频',
+      soundReplace: '更换音频',
+      soundRemove: '移除',
+      soundReading: '读取中…',
+      soundUploadHint: '支持 MP3 / WAV / OGG，最大 8 MB；只保存在本机。',
+      soundUploadType: '请选择音频文件。',
+      soundUploadSize: '音频文件不能超过 8 MB。',
+      soundUploaded: '已保存自定义提示音。',
+      soundUploadedMemory: '已加载；此浏览器无法持久保存。',
+      soundUploadFailed: '无法读取这个音频文件。',
+      soundRemoved: '已移除自定义提示音。',
+      soundPreview: '试听',
+      soundSpecimenSynth: 'SYNTH',
+      soundSpecimenLocal: 'LOCAL FILE',
       statusOn: '已开启',
       statusOff: '已关闭',
       toggleOn: '关闭',
@@ -2509,7 +2649,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       previewPill: '正在预览水母皮肤',
       previewPillEnd: '结束预览',
       skinOnHint: '已在界面中生效 · 下方为实时预览。',
-      localHint: '开关保存在本机浏览器，刷新后继续生效。',
+      localHint: '开关与提示音设置保存在本机浏览器，刷新后继续生效。',
       stageLive: 'LIVE SPECIMEN',
       stageTitle: '安静的水，\n和一群会呼吸的字。',
       stageComposer: '问点什么…',
@@ -2523,13 +2663,16 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
     const en = {
       nav: 'Appearance & Boot',
       title: 'Appearance & Boot',
-      lede: 'A quiet body of water and a terminal takeover. The boot animation and the skin are independent — switch or preview either one at any time.',
+      lede: 'A quiet body of water, a terminal takeover, and a small sound at the end. The boot animation, the skin and the completion tone are independent — switch or preview any of them at any time.',
       indexBoot: 'Boot animation',
       indexSkin: 'Skin',
+      indexSound: 'Sound',
       sectionBoot: 'Boot animation',
       sectionBootHint: 'A terminal takeover plays once each time Harness starts; click the frame or press Esc to skip.',
       sectionSkin: 'Skin',
       sectionSkinHint: 'A neutral skin for the whole Harness, with one shared school of ASCII jellyfish behind every surface.',
+      sectionSound: 'Sound',
+      sectionSoundHint: 'Play a short tone when an Agent turn finishes; choose a built-in voice, set the volume, or upload your own audio.',
       bootTitle: '550C boot animation',
       bootCopy: 'The base-station terminal opens, all 47 nodes are rewritten one by one, and the sequence settles on SYSTEM IS REWRITTEN. About 10 seconds; click or press Esc to skip.',
       bootNotePre: 'Based on',
@@ -2539,6 +2682,31 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       skinMetaOne: 'Frame-wide tank',
       skinMetaTwo: 'Six species',
       skinMetaThree: '120 Hz simulation',
+      soundTitle: 'Task completion sound',
+      soundCopy: 'Plays once each time an Agent answer completes. Built-in tones are synthesised in this browser; a custom file stays on this device and is never uploaded.',
+      soundPickLabel: 'Tone',
+      soundPickMeta: 'Pick to preview',
+      soundVolume: 'Volume',
+      soundVolumeAria: 'Completion sound volume',
+      soundDrop: 'Drop',
+      soundChime: 'Chime',
+      soundGlass: 'Glass',
+      soundSignal: 'Signal',
+      soundCustom: 'Custom',
+      soundUpload: 'Upload audio',
+      soundReplace: 'Replace audio',
+      soundRemove: 'Remove',
+      soundReading: 'Reading…',
+      soundUploadHint: 'MP3, WAV or OGG up to 8 MB; stored on this device only.',
+      soundUploadType: 'Choose an audio file.',
+      soundUploadSize: 'Audio files must be 8 MB or smaller.',
+      soundUploaded: 'Custom sound saved.',
+      soundUploadedMemory: 'Loaded; this browser cannot persist it.',
+      soundUploadFailed: 'This audio file could not be read.',
+      soundRemoved: 'Custom sound removed.',
+      soundPreview: 'Preview',
+      soundSpecimenSynth: 'SYNTH',
+      soundSpecimenLocal: 'LOCAL FILE',
       statusOn: 'On',
       statusOff: 'Off',
       toggleOn: 'Turn off',
@@ -2550,7 +2718,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       previewPill: 'Previewing Jelly Skin',
       previewPillEnd: 'End preview',
       skinOnHint: 'Live in the app — the specimen below is a live preview.',
-      localHint: 'Switches are stored in this browser and survive a refresh.',
+      localHint: 'Switches and sound settings are stored in this browser and survive a refresh.',
       stageLive: 'LIVE SPECIMEN',
       stageTitle: 'Quiet water,\nand a school of breathing type.',
       stageComposer: 'Ask something…',
@@ -2568,47 +2736,59 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
      * throws (private windows, disabled site data) instead of letting the next
      * read snap a just-flipped switch back to its default.
      */
-    const memoryFlags = new Map();
+    const memoryValues = new Map();
     let storageBlocked = false;
 
-    /** Read one switch; an unset or unreadable key keeps the feature on. */
-    function readFlag(key) {
+    /** Read one raw value; an unavailable storage keeps the in-memory value. */
+    function readStored(key) {
       if (!storageBlocked) {
         try {
           const storage = globalThis.localStorage;
           if (storage === null || storage === undefined) storageBlocked = true;
-          else return storage.getItem(key) !== 'off';
+          else return storage.getItem(key);
         } catch {
           storageBlocked = true;
         }
       }
-      return memoryFlags.get(key) ?? true;
+      return memoryValues.get(key) ?? null;
+    }
+
+    /** Read one switch; an unset or unreadable key keeps the feature on. */
+    function readFlag(key) {
+      const value = readStored(key);
+      return value === null ? true : value !== 'off';
+    }
+
+    /** The volume is a whole percentage; anything malformed falls back to 60. */
+    function readVolume() {
+      const value = Number.parseInt(readStored(SOUND_VOLUME_KEY) ?? '', 10);
+      if (!Number.isFinite(value)) return SOUND_VOLUME_DEFAULT;
+      return Math.max(0, Math.min(100, value));
+    }
+
+    /** The selected tone must be a built-in id or the one custom slot. */
+    function readSoundChoice() {
+      const value = readStored(SOUND_CHOICE_KEY);
+      if (value === 'wood') return 'glass';
+      if (value === 'custom' || BUILTIN_SOUNDS.some((sound) => sound.id === value)) return value;
+      return BUILTIN_SOUNDS[0].id;
     }
 
     /** The complete live preference snapshot. */
     function readSettings() {
-      return { skin: readFlag(SKIN_KEY), boot: readFlag(BOOT_KEY) };
+      return {
+        skin: readFlag(SKIN_KEY),
+        boot: readFlag(BOOT_KEY),
+        sound: readFlag(SOUND_KEY),
+        volume: readVolume(),
+        soundChoice: readSoundChoice(),
+      };
     }
 
     const settingsListeners = new Set();
 
-    /** Persist one switch and wake every mounted settings page. */
-    function writeFlag(key, on) {
-      memoryFlags.set(key, on);
-      try {
-        const storage = globalThis.localStorage;
-        if (storage === null || storage === undefined) {
-          storageBlocked = true;
-        } else {
-          storage.setItem(key, on ? 'on' : 'off');
-          storageBlocked = false;
-        }
-      } catch {
-        storageBlocked = true;
-      }
-      // One notification path: the local event reaches every subscriber added
-      // by subscribeSettings. Keep the direct loop only as a fallback for a
-      // page where Event or dispatchEvent is unavailable.
+    /** Wake every mounted settings page without duplicating the notification path. */
+    function notifySettings() {
       let notified = false;
       try {
         if (typeof Event === 'function' && typeof globalThis.dispatchEvent === 'function') {
@@ -2629,14 +2809,39 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       }
     }
 
+    /** Persist one value and wake every mounted settings page. */
+    function writeSetting(key, value) {
+      const text = String(value);
+      memoryValues.set(key, text);
+      try {
+        const storage = globalThis.localStorage;
+        if (storage === null || storage === undefined) {
+          storageBlocked = true;
+        } else {
+          storage.setItem(key, text);
+          storageBlocked = false;
+        }
+      } catch {
+        storageBlocked = true;
+      }
+      notifySettings();
+    }
+
+    /** Persist one boolean switch as the historical on/off spelling. */
+    function writeFlag(key, on) {
+      writeSetting(key, on ? 'on' : 'off');
+    }
+
+    const SETTING_KEYS = new Set([SKIN_KEY, BOOT_KEY, SOUND_KEY, SOUND_VOLUME_KEY, SOUND_CHOICE_KEY]);
+
     function subscribeSettings(listener) {
       settingsListeners.add(listener);
       const onStorage = (event) => {
         if (event.key === null) {
-          memoryFlags.clear();
-        } else if (event.key === SKIN_KEY || event.key === BOOT_KEY) {
-          if (event.newValue === null) memoryFlags.delete(event.key);
-          else memoryFlags.set(event.key, event.newValue !== 'off');
+          memoryValues.clear();
+        } else if (SETTING_KEYS.has(event.key)) {
+          if (event.newValue === null) memoryValues.delete(event.key);
+          else memoryValues.set(event.key, event.newValue);
         } else {
           return;
         }
@@ -2652,7 +2857,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       };
     }
 
-    /** Subscribe a React view to the two switches. */
+    /** Subscribe a React view to the live preference snapshot. */
     function useJellySettings() {
       const [state, setState] = useState(readSettings);
       useEffect(() => {
@@ -2663,6 +2868,427 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         return stop;
       }, []);
       return state;
+    }
+
+    // ── the completion sound ────────────────────────────────────────────────
+    //
+    // The sound is local by construction: built-ins are synthesised with Web
+    // Audio, and a custom upload is decoded from one IndexedDB record. Nothing
+    // here fetches, uploads, or touches the Session log.
+
+    /** One uploaded sound kept for browsers where IndexedDB is unavailable. */
+    let memoryCustomSound = null;
+    let soundDatabase = null;
+
+    function openSoundDatabase() {
+      if (soundDatabase !== null) return soundDatabase;
+      let failed = false;
+      const opening = new Promise((resolve, reject) => {
+        let factory = null;
+        try {
+          factory = globalThis.indexedDB;
+        } catch {
+          factory = null;
+        }
+        if (!factory) {
+          reject(new Error('indexedDB unavailable'));
+          return;
+        }
+        const request = factory.open(SOUND_DB_NAME, 1);
+        request.onupgradeneeded = () => {
+          const db = request.result;
+          if (!db.objectStoreNames.contains(SOUND_DB_STORE)) db.createObjectStore(SOUND_DB_STORE);
+        };
+        request.onsuccess = () => {
+          const db = request.result;
+          // A blocked request can still succeed after the promise rejected; a
+          // late connection must be closed instead of being leaked.
+          if (failed) {
+            try {
+              db.close();
+            } catch {
+              /* nothing to release */
+            }
+            return;
+          }
+          db.onversionchange = () => {
+            try {
+              db.close();
+            } catch {
+              /* already closed */
+            }
+            if (soundDatabase === opening) soundDatabase = null;
+          };
+          resolve(db);
+        };
+        request.onerror = () => {
+          failed = true;
+          reject(request.error ?? new Error('indexedDB open failed'));
+        };
+        request.onblocked = () => {
+          failed = true;
+          reject(new Error('indexedDB blocked'));
+        };
+      });
+      soundDatabase = opening;
+      // Do not cache a failed open forever: a transient block (another tab
+      // holding the old version) must not disable persistence for the session.
+      opening.catch(() => {
+        if (soundDatabase === opening) soundDatabase = null;
+      });
+      return opening;
+    }
+
+    /** Close the shared connection when the plugin is torn down or reloaded. */
+    function closeSoundDatabase() {
+      const opening = soundDatabase;
+      soundDatabase = null;
+      if (opening === null) return;
+      opening.then(
+        (db) => {
+          try {
+            db.close();
+          } catch {
+            /* already closed */
+          }
+        },
+        () => {},
+      );
+    }
+
+    async function soundStore(mode) {
+      const db = await openSoundDatabase();
+      return db.transaction(SOUND_DB_STORE, mode).objectStore(SOUND_DB_STORE);
+    }
+
+    async function readCustomSound() {
+      try {
+        const store = await soundStore('readonly');
+        return await new Promise((resolve, reject) => {
+          const request = store.get('custom');
+          request.onsuccess = () => resolve(request.result ?? memoryCustomSound);
+          request.onerror = () => reject(request.error ?? new Error('indexedDB read failed'));
+        });
+      } catch {
+        return memoryCustomSound;
+      }
+    }
+
+    /** Save one uploaded sound; true when it survives this browser session. */
+    async function saveCustomSound(record) {
+      memoryCustomSound = record;
+      try {
+        const store = await soundStore('readwrite');
+        await new Promise((resolve, reject) => {
+          const request = store.put(record, 'custom');
+          request.onsuccess = () => resolve();
+          request.onerror = () => reject(request.error ?? new Error('indexedDB write failed'));
+        });
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    async function deleteCustomSound() {
+      memoryCustomSound = null;
+      try {
+        const store = await soundStore('readwrite');
+        await new Promise((resolve, reject) => {
+          const request = store.delete('custom');
+          request.onsuccess = () => resolve();
+          request.onerror = () => reject(request.error ?? new Error('indexedDB delete failed'));
+        });
+      } catch {
+        /* the in-memory copy is already gone */
+      }
+    }
+
+    /**
+     * One page-lifetime audio player.
+     *
+     * A gesture primes the AudioContext so a later autonomous completion may
+     * speak; if the browser still keeps it suspended, the attempt is silent
+     * rather than an error. Playback failures never reach the application.
+     */
+    function createSoundPlayer() {
+      let audio = null;
+      let master = null;
+      let disposed = false;
+      let lastPlayed = 0;
+      let customBuffer = null;
+      let customToken = '';
+      const doc = globalThis.document ?? null;
+
+      const getAudio = () => {
+        if (disposed) return null;
+        if (audio !== null) {
+          if (audio.state === 'closed') {
+            audio = null;
+            master = null;
+          } else {
+            return audio;
+          }
+        }
+        const Ctor = globalThis.AudioContext ?? globalThis.webkitAudioContext;
+        if (typeof Ctor !== 'function') return null;
+        try {
+          audio = new Ctor();
+        } catch {
+          audio = null;
+        }
+        return audio;
+      };
+
+      const customTokenOf = (record) => `${record.name}:${record.size}:${record.updatedAt ?? ''}`;
+
+      /** Decode one uploaded file before it is selected, so a corrupt file is
+       *  rejected instead of silently falling back to the default tone later. */
+      const validateCustom = async (record) => {
+        const context = getAudio();
+        if (context === null) return null;
+        try {
+          const bytes = await record.blob.arrayBuffer();
+          customBuffer = await context.decodeAudioData(bytes);
+          customToken = customTokenOf(record);
+          return true;
+        } catch {
+          customBuffer = null;
+          customToken = '';
+          return false;
+        }
+      };
+
+      const resume = (context) => {
+        try {
+          // Safari can report `interrupted` in addition to `suspended`; treat
+          // every non-running state as resumable and keep failure best-effort.
+          if (context.state !== 'running') context.resume().catch(() => {});
+        } catch {
+          /* audio is best-effort */
+        }
+      };
+
+      /**
+       * The master path: the slider maps to a generous linear gain, then a
+       * limiter catches the rare summed peak so 100% is loud without clipping.
+       * Custom files are already mastered, so they take the same slider with a
+       * unity scale instead of the built-in synthesis boost.
+       */
+      const outputNode = (context, volume, scale) => {
+        const gain = context.createGain();
+        const level = Math.max(0, Math.min(100, volume)) / 100;
+        gain.gain.value = Math.pow(level, 1.35) * scale;
+        // One limiter per AudioContext, not one per note: repeated previews and
+        // completions must not accumulate compressor nodes on the destination.
+        if (master === null || master.context !== context) {
+          let destination = context.destination;
+          if (typeof context.createDynamicsCompressor === 'function') {
+            try {
+              const limiter = context.createDynamicsCompressor();
+              limiter.threshold.value = -0.5;
+              limiter.knee.value = 0;
+              limiter.ratio.value = 50;
+              limiter.attack.value = 0.003;
+              limiter.release.value = 0.25;
+              limiter.connect(context.destination);
+              destination = limiter;
+            } catch {
+              destination = context.destination;
+            }
+          }
+          master = { context, destination };
+        }
+        gain.connect(master.destination);
+        return gain;
+      };
+
+      /** One enveloped oscillator note; exponential edges stay click-free. */
+      const blip = (context, output, start, frequency, duration, level, type = 'sine', endFrequency = null) => {
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+        oscillator.type = type;
+        oscillator.frequency.setValueAtTime(frequency, start);
+        if (endFrequency !== null) oscillator.frequency.exponentialRampToValueAtTime(endFrequency, start + duration);
+        gain.gain.setValueAtTime(0.0001, start);
+        gain.gain.exponentialRampToValueAtTime(level, start + Math.min(0.015, duration / 3));
+        gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+        oscillator.connect(gain).connect(output);
+        oscillator.start(start);
+        oscillator.stop(start + duration + 0.02);
+      };
+
+      const playBuiltin = (id, volume) => {
+        const context = getAudio();
+        if (context === null) return false;
+        resume(context);
+        const output = outputNode(context, volume, SOUND_BUILTIN_GAIN);
+        const now = context.currentTime + 0.02;
+        if (id === 'chime') {
+          // A soft D-major wind-chime arpeggio; pure tones, no clangy partials.
+          blip(context, output, now, 587.33, 0.9, 0.18);
+          blip(context, output, now + 0.14, 880, 0.8, 0.12);
+          blip(context, output, now + 0.28, 1174.66, 0.7, 0.08);
+        } else if (id === 'glass') {
+          // A bright, short glass ping with two quiet upper partials.
+          blip(context, output, now, 1046.5, 0.48, 0.16);
+          blip(context, output, now, 2093, 0.3, 0.055);
+          blip(context, output, now, 3139.5, 0.18, 0.025);
+        } else if (id === 'signal') {
+          blip(context, output, now, 659.25, 0.12, 0.16, 'triangle');
+          blip(context, output, now + 0.15, 987.77, 0.26, 0.14, 'triangle');
+        } else {
+          // A soft marimba-like water drop: warm fall plus a quiet octave.
+          blip(context, output, now, 392, 0.45, 0.25, 'sine', 261.63);
+          blip(context, output, now, 784, 0.12, 0.045, 'sine', 523.25);
+        }
+        return true;
+      };
+
+      const playCustom = async (volume) => {
+        const context = getAudio();
+        if (context === null) return false;
+        resume(context);
+        const record = await readCustomSound();
+        if (record?.blob === undefined || record.blob === null) return playBuiltin(BUILTIN_SOUNDS[0].id, volume);
+        const token = customTokenOf(record);
+        if (customBuffer === null || customToken !== token) {
+          const bytes = await record.blob.arrayBuffer();
+          customBuffer = await context.decodeAudioData(bytes);
+          customToken = token;
+        }
+        const source = context.createBufferSource();
+        source.buffer = customBuffer;
+        source.connect(outputNode(context, volume, SOUND_CUSTOM_GAIN));
+        source.start();
+        return true;
+      };
+
+      const play = (choice, volume) => {
+        try {
+          if (choice === 'custom') {
+            return playCustom(volume).catch(() => playBuiltin(BUILTIN_SOUNDS[0].id, volume));
+          }
+          return Promise.resolve(playBuiltin(choice, volume));
+        } catch {
+          // Web Audio can throw synchronously for a closed/limited context;
+          // never let a completion notification escape as an uncaught error.
+          return Promise.resolve(false);
+        }
+      };
+
+      const prime = () => {
+        if (audio === null) {
+          const settings = readSettings();
+          // Do not create an AudioContext just because the user clicked
+          // anywhere with the sound switched off; a muted page pays no audio
+          // cost, and an existing context needs no repeated storage reads.
+          if (!settings.sound) return;
+        }
+        const context = getAudio();
+        if (context !== null) resume(context);
+      };
+      try {
+        doc?.addEventListener('pointerdown', prime, true);
+        doc?.addEventListener('keydown', prime, true);
+      } catch {
+        /* a document without listeners leaves playback best-effort */
+      }
+
+      return {
+        /** Prime the context from a real user gesture. */
+        prime,
+        /** Play for a completed Agent turn, honouring the stored preferences. */
+        playCompletion() {
+          const settings = readSettings();
+          if (!settings.sound || settings.volume <= 0) return;
+          const now = Date.now();
+          if (now - lastPlayed < 600) return;
+          lastPlayed = now;
+          play(settings.soundChoice, settings.volume).catch(() => {});
+        },
+        /** Preview one tone through the same engine the completion path uses. */
+        preview(choice) {
+          const settings = readSettings();
+          play(choice ?? settings.soundChoice, settings.volume).catch(() => {});
+        },
+        /** Decode an upload before it is saved; null means Web Audio is unavailable. */
+        validateCustom,
+        dispose() {
+          disposed = true;
+          try {
+            doc?.removeEventListener('pointerdown', prime, true);
+            doc?.removeEventListener('keydown', prime, true);
+          } catch {
+            /* listener cleanup is best-effort */
+          }
+          const context = audio;
+          audio = null;
+          master = null;
+          try {
+            context?.close?.().catch?.(() => {});
+          } catch {
+            /* a closed context is already gone */
+          }
+        },
+      };
+    }
+
+    /**
+     * Watch Session running state and report each true → false edge.
+     *
+     * `uiSession.sessionStatus` is the public UI status projection: it already
+     * reconciles Host list baselines with `api-session/status` events, so this
+     * observer does not need to touch Remote internals or poll.
+     */
+    function watchCompletions(uiSession, sessions, onComplete) {
+      const status = uiSession?.sessionStatus;
+      if (status === null || status === undefined || typeof status.subscribe !== 'function') return () => {};
+      /** Subagent sessions are separate tasks; only the parent output gets a chime. */
+      const isSubagent = (id) => {
+        try {
+          return sessions?.list?.getSnapshot?.()?.byId?.[id]?.origin === 'subagent';
+        } catch {
+          return false;
+        }
+      };
+      const previous = new Map();
+      const read = () => {
+        try {
+          const snapshot = status.getSnapshot?.();
+          if (snapshot === null || snapshot === undefined || typeof snapshot.forEach !== 'function') return;
+          let completed = false;
+          const seen = new Set();
+          snapshot.forEach((entry, id) => {
+            seen.add(id);
+            if (previous.get(id) === true && entry?.running === false && !isSubagent(id)) completed = true;
+            previous.set(id, entry?.running === true);
+          });
+          for (const id of previous.keys()) {
+            if (!seen.has(id)) previous.delete(id);
+          }
+          if (completed) onComplete();
+        } catch {
+          // A projection change must never turn into an uncaught error in the
+          // ui-session subscriber; the next snapshot can still complete.
+        }
+      };
+      read();
+      let stop;
+      try {
+        stop = status.subscribe(read);
+      } catch {
+        // A service that is already shutting down leaves the settings page and
+        // previews intact; there is simply no completion stream to observe.
+        return () => {};
+      }
+      return () => {
+        try {
+          stop();
+        } catch {
+          /* the service may already be gone during teardown */
+        }
+      };
     }
 
     // ── the skin binding ─────────────────────────────────────────────────────
@@ -2688,9 +3314,13 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       const isActive = () => readFlag(SKIN_KEY) || previewing;
 
       const markBody = () => {
-        if (!isActive()) return;
         const body = globalThis.document?.body ?? null;
         if (body === null) return;
+        // The body observer fires for every body-level toast/menu append. If the
+        // marker is already in place, avoid both a storage read and an attribute
+        // write; only a replaced body or a removed marker needs work.
+        if (markedBody === body && body.getAttribute(BODY_MARK) === 'true') return;
+        if (!isActive()) return;
         if (markedBody !== null && markedBody !== body) markedBody.removeAttribute(BODY_MARK);
         body.setAttribute(BODY_MARK, 'true');
         markedBody = body;
@@ -2703,16 +3333,52 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         markedBody = null;
       };
 
+      /** Re-mark a replaced <body> only while the skin is actually engaged. */
+      const watchBody = () => {
+        if (bodyObserver !== null || typeof MutationObserver !== 'function') return;
+        const root = globalThis.document?.documentElement;
+        if (!root) return;
+        bodyObserver = new MutationObserver(() => markBody());
+        bodyObserver.observe(root, { childList: true });
+      };
+
+      const unwatchBody = () => {
+        bodyObserver?.disconnect();
+        bodyObserver = null;
+      };
+
       const engage = () => {
         // Mark the body before the canvas mount: mountJellyTank reads the
         // palette from the canvas immediately, and the skin variables (and the
         // tank's positioning rule) only exist while the body is marked.
-        markBody();
-        if (tokenDispose === null) tokenDispose = ctx.theme.overrideTokens(SOURCE, TOKEN_OVERRIDES);
-        if (surfaceDispose === null) surfaceDispose = installJellySurface();
-        // A body that appeared between the first mark and the mount still gets
-        // the marker without rebuilding a palette that is already correct.
-        markBody();
+        try {
+          markBody();
+          watchBody();
+          if (tokenDispose === null) tokenDispose = ctx.theme.overrideTokens(SOURCE, TOKEN_OVERRIDES);
+          if (surfaceDispose === null) surfaceDispose = installJellySurface();
+          // A body that appeared between the first mark and the mount still gets
+          // the marker without rebuilding a palette that is already correct.
+          markBody();
+        } catch (error) {
+          // A failed engagement must not leave a half-applied skin: the body
+          // marker without its tokens, or a canvas without its palette.
+          try {
+            surfaceDispose?.();
+          } finally {
+            surfaceDispose = null;
+            try {
+              tokenDispose?.();
+            } finally {
+              tokenDispose = null;
+              try {
+                unmarkBody();
+              } finally {
+                unwatchBody();
+              }
+            }
+          }
+          throw error;
+        }
       };
 
       const disengage = () => {
@@ -2724,7 +3390,11 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
             tokenDispose?.();
           } finally {
             tokenDispose = null;
-            unmarkBody();
+            try {
+              unmarkBody();
+            } finally {
+              unwatchBody();
+            }
           }
         }
       };
@@ -2808,11 +3478,6 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         return true;
       };
 
-      if (typeof MutationObserver === 'function' && globalThis.document?.documentElement) {
-        bodyObserver = new MutationObserver(() => markBody());
-        bodyObserver.observe(globalThis.document.documentElement, { childList: true });
-      }
-
       return {
         sync,
         preview,
@@ -2820,16 +3485,21 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         dispose() {
           try {
             stopPreview();
+          } catch {
+            /* continue the rest of the teardown */
           } finally {
             if (previewTimer !== 0) {
               clearTimeout(previewTimer);
               previewTimer = 0;
             }
             previewEnd = null;
-            bodyObserver?.disconnect();
-            bodyObserver = null;
+            unwatchBody();
             removePill();
-            disengage();
+            try {
+              disengage();
+            } catch {
+              /* the plugin lifecycle must finish even if a disposer fails */
+            }
           }
         },
       };
@@ -2853,11 +3523,19 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       let settle = null;
       let started = false;
       let listening = false;
+      let mountTimer = 0;
 
       const clearFallback = () => {
         if (fallback !== 0) {
           clearTimeout(fallback);
           fallback = 0;
+        }
+      };
+
+      const clearMountTimer = () => {
+        if (mountTimer !== 0) {
+          clearTimeout(mountTimer);
+          mountTimer = 0;
         }
       };
 
@@ -2877,6 +3555,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
 
       const cleanup = () => {
         clearFallback();
+        clearMountTimer();
         if (frame !== null) {
           frame.removeEventListener('load', onLoad);
           frame.remove();
@@ -2900,10 +3579,13 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         }
         const leaving = frame;
         leaving.classList.add('is-leaving');
-        // If the iframe never loaded, there is no fade to wait for: retire the
-        // host cover now instead of leaving a black screen until the 6 s net.
-        if (!leaving.classList.contains('is-ready')) endFirstFrame();
+        // The animation is leaving the screen now, whether it loaded or was
+        // skipped during the fade-in; never leave the Host's solid cover to its
+        // 6 s safety timer.
+        endFirstFrame();
         clearFallback();
+        clearMountTimer();
+        leaving.removeEventListener('load', onLoad);
         detach();
         const done = settle;
         settle = null;
@@ -2932,11 +3614,13 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       function onLoad(event) {
         const loaded = event?.currentTarget ?? frame;
         requestAnimationFrame(() => {
-          if (loaded === null || frame !== loaded) return;
+          if (!playing || loaded === null || frame !== loaded) return;
           loaded.classList.add('is-ready');
           // The iframe fades in over 350 ms. Keep the opaque host cover until
           // the fade has finished, otherwise the app flashes through it.
-          globalThis.setTimeout(() => {
+          clearMountTimer();
+          mountTimer = globalThis.setTimeout(() => {
+            mountTimer = 0;
             if (frame !== loaded) return;
             globalThis.__dshJellyBootMounted = true;
             endFirstFrame();
@@ -3056,41 +3740,31 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       return version;
     }
 
-    /** The compact screen-and-play mark used by the Settings navigation row. */
-    function AppIcon({ size = 16, active = false }) {
+    /**
+     * The compact screen-and-play mark used by the Settings navigation row.
+     * Drawn on the shell's 16px icon grid with its 1.1px line weight so it sits
+     * at the same optical size as the shipped Settings glyphs.
+     */
+    function AppIcon({ size = 16 }) {
       return h(
         'svg',
         {
           width: size,
           height: size,
-          viewBox: '0 0 24 24',
+          viewBox: '0 0 16 16',
           fill: 'none',
-          'aria-hidden': 'true',
-          style: { opacity: active ? 1 : 0.86 },
-        },
-        h('rect', {
-          x: 2.8,
-          y: 4.2,
-          width: 18.4,
-          height: 15.6,
-          rx: 1,
-          stroke: 'currentColor',
-          strokeWidth: 1.4,
-        }),
-        h('path', {
-          d: 'M2.8 7.7h18.4',
           stroke: 'currentColor',
           strokeWidth: 1.1,
-          opacity: 0.5,
-        }),
-        h('path', {
-          d: 'M6.3 10.4 9.3 12.5 6.3 14.6Z',
-          fill: 'currentColor',
-        }),
-        h('rect', { x: 12.6, y: 10.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.9 }),
-        h('rect', { x: 16.8, y: 10.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.5 }),
-        h('rect', { x: 12.6, y: 14.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.5 }),
-        h('rect', { x: 16.8, y: 14.5, width: 3, height: 3, fill: 'currentColor', opacity: 0.9 }),
+          strokeLinecap: 'butt',
+          strokeLinejoin: 'round',
+          'aria-hidden': 'true',
+          focusable: 'false',
+          style: { display: 'block', flex: '0 0 auto' },
+        },
+        h('rect', { x: 1.7, y: 1.9, width: 12.6, height: 11.8 }),
+        h('path', { d: 'M1.7 5.2h12.6', opacity: 0.45 }),
+        h('path', { d: 'M5.1 7.3 8 9.2 5.1 11.1V7.3Z', fill: 'currentColor', stroke: 'none' }),
+        h('path', { d: 'M9.8 9.2h2.5', opacity: 0.55 }),
       );
     }
 
@@ -3218,15 +3892,364 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       );
     }
 
+    /** A quiet equaliser used by the sound specimen and the option tiles. */
+    const SOUND_BARS = [6, 10, 15, 9, 19, 12, 7, 17, 23, 10, 6, 14, 9, 18, 12, 7, 15, 21, 10, 17, 6, 14, 9, 19, 12, 7, 18, 14, 23, 9, 15, 6, 12, 17, 10, 7, 19, 14, 9, 6];
+    const SOUND_OPTION_BARS = [4, 9, 6, 11];
+
+    function formatBytes(size) {
+      if (!Number.isFinite(size) || size <= 0) return '';
+      if (size < 1024) return `${Math.round(size)} B`;
+      if (size < 1024 * 1024) return `${Math.round(size / 1024)} KB`;
+      return `${(size / (1024 * 1024)).toFixed(1)} MB`;
+    }
+
+    /** The sound's own specimen: a waveform strip that moves while previewing. */
+    function SoundSpecimen({ choice, customName, playing, t }) {
+      const label = choice === 'custom' ? customName || t('soundCustom') : choice.toUpperCase();
+      return h(
+        'div',
+        { className: `jelly-sound-specimen${playing ? ' is-playing' : ''}`, 'aria-hidden': 'true' },
+        h(
+          'div',
+          { className: 'jelly-sound-specimen-head' },
+          h('span', null, 'AUDIO / 03'),
+          h('span', { className: 'jelly-sound-specimen-name' }, label),
+        ),
+        h(
+          'div',
+          { className: 'jelly-sound-bars' },
+          SOUND_BARS.map((height, index) =>
+            h('i', { key: index, style: { height: `${height}px`, animationDelay: `${(index % 8) * 52}ms` } }),
+          ),
+        ),
+        h(
+          'div',
+          { className: 'jelly-sound-specimen-foot' },
+          h('span', null, '44.1 KHZ'),
+          h('span', null, 'MONO'),
+          h('span', null, choice === 'custom' ? t('soundSpecimenLocal') : t('soundSpecimenSynth')),
+        ),
+      );
+    }
+
+    /**
+     * 03 提示音 — one switch, four synthesised voices, one local upload.
+     * The chapter owns its upload lifecycle; the player itself lives with the
+     * plugin so it can speak while this page is closed.
+     */
+    function SoundChapter({ state, t, onToggle }) {
+      const [custom, setCustom] = useState(null);
+      const [busy, setBusy] = useState(false);
+      const [note, setNote] = useState('');
+      const [playing, setPlaying] = useState(false);
+      const [volume, setVolume] = useState(state.volume);
+      const fileRef = useRef(null);
+      const playTimer = useRef(0);
+      const volumeTimer = useRef(0);
+      const volumeValue = useRef(state.volume);
+      const aliveRef = useRef(true);
+
+      /** Keep the slider local, then persist once the drag settles. */
+      const flushVolume = () => {
+        if (volumeTimer.current === 0) return;
+        clearTimeout(volumeTimer.current);
+        volumeTimer.current = 0;
+        writeSetting(SOUND_VOLUME_KEY, volumeValue.current);
+      };
+
+      const changeVolume = (event) => {
+        const next = Number(event.currentTarget.value);
+        if (!Number.isFinite(next)) return;
+        volumeValue.current = next;
+        setVolume(next);
+        if (volumeTimer.current !== 0) clearTimeout(volumeTimer.current);
+        volumeTimer.current = setTimeout(() => {
+          volumeTimer.current = 0;
+          writeSetting(SOUND_VOLUME_KEY, volumeValue.current);
+        }, 120);
+      };
+
+      useEffect(() => {
+        volumeValue.current = state.volume;
+        setVolume(state.volume);
+      }, [state.volume]);
+
+      useEffect(() => {
+        aliveRef.current = true;
+        let alive = true;
+        readCustomSound().then((record) => {
+          if (!alive) return;
+          setCustom(record);
+          // A lost upload must not leave the picker pointing at a tone that no
+          // longer exists; fall back to the default voice.
+          if (record === null && state.soundChoice === 'custom') writeSetting(SOUND_CHOICE_KEY, BUILTIN_SOUNDS[0].id);
+        });
+        return () => {
+          alive = false;
+          aliveRef.current = false;
+          if (playTimer.current !== 0) {
+            clearTimeout(playTimer.current);
+            playTimer.current = 0;
+          }
+          if (volumeTimer.current !== 0) {
+            clearTimeout(volumeTimer.current);
+            volumeTimer.current = 0;
+            writeSetting(SOUND_VOLUME_KEY, volumeValue.current);
+          }
+        };
+        // `state.soundChoice` is read on mount; later changes are user-driven.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
+
+      const preview = (choice) => {
+        flushVolume();
+        try {
+          soundPlayer?.preview(choice);
+        } catch {
+          /* the preview is a courtesy; configuration still saves */
+        }
+        if (playTimer.current !== 0) clearTimeout(playTimer.current);
+        setPlaying(false);
+        playTimer.current = setTimeout(() => {
+          if (!aliveRef.current) return;
+          setPlaying(true);
+          playTimer.current = setTimeout(() => {
+            if (!aliveRef.current) return;
+            setPlaying(false);
+            playTimer.current = 0;
+          }, 1400);
+        }, 16);
+      };
+
+      const chooseSound = (id) => {
+        writeSetting(SOUND_CHOICE_KEY, id);
+        preview(id);
+      };
+
+      const onFile = async (event) => {
+        const input = event.currentTarget;
+        const file = input.files?.[0];
+        input.value = '';
+        if (!file) return;
+        if (file.type && !file.type.startsWith('audio/')) {
+          setNote(t('soundUploadType'));
+          return;
+        }
+        if (file.size > SOUND_CUSTOM_MAX_BYTES) {
+          setNote(t('soundUploadSize'));
+          return;
+        }
+        setBusy(true);
+        setNote('');
+        const record = { blob: file, name: file.name, type: file.type || 'audio', size: file.size, updatedAt: Date.now() };
+        try {
+          const playable = await soundPlayer?.validateCustom?.(record);
+          if (playable === false) {
+            if (aliveRef.current) setNote(t('soundUploadFailed'));
+            return;
+          }
+          const persisted = await saveCustomSound(record);
+          if (!aliveRef.current) return;
+          setCustom(record);
+          writeSetting(SOUND_CHOICE_KEY, 'custom');
+          setNote(persisted ? t('soundUploaded') : t('soundUploadedMemory'));
+          preview('custom');
+        } catch {
+          if (aliveRef.current) setNote(t('soundUploadFailed'));
+        } finally {
+          if (aliveRef.current) setBusy(false);
+        }
+      };
+
+      const removeCustom = async () => {
+        setBusy(true);
+        setNote('');
+        try {
+          await deleteCustomSound();
+          if (!aliveRef.current) return;
+          setCustom(null);
+          if (state.soundChoice === 'custom') writeSetting(SOUND_CHOICE_KEY, BUILTIN_SOUNDS[0].id);
+          setNote(t('soundRemoved'));
+        } finally {
+          if (aliveRef.current) setBusy(false);
+        }
+      };
+
+      const option = (sound) =>
+        h(
+          'button',
+          {
+            key: sound.id,
+            type: 'button',
+            role: 'radio',
+            className: 'jelly-sound-option',
+            'aria-checked': state.soundChoice === sound.id,
+            onClick: () => chooseSound(sound.id),
+          },
+          h(
+            'span',
+            { className: 'jelly-sound-wave', 'aria-hidden': 'true' },
+            SOUND_OPTION_BARS.map((height, index) => h('i', { key: index, style: { height: `${height}px` } })),
+          ),
+          h('span', { className: 'jelly-sound-option-name' }, t(sound.label)),
+          h('span', { className: 'jelly-sound-option-meta' }, sound.meta),
+        );
+
+      return h(
+        'article',
+        { className: 'jelly-card' },
+        h(
+          'div',
+          { className: 'jelly-card-main' },
+          h(
+            'div',
+            { className: 'jelly-card-title-row' },
+            h('h3', null, t('soundTitle')),
+            h(Status, { on: state.sound, t }),
+          ),
+          h('p', { className: 'jelly-card-copy' }, t('soundCopy')),
+          h(
+            'div',
+            { className: 'jelly-card-actions' },
+            h(Toggle, {
+              checked: state.sound,
+              label: fillText(t('switchAria'), { name: t('soundTitle') }),
+              title: state.sound ? t('toggleOn') : t('toggleOff'),
+              onChange: onToggle,
+            }),
+            h(
+              'button',
+              {
+                type: 'button',
+                className: 'jelly-button',
+                onClick: () => preview(),
+                'aria-label': fillText(t('previewAria'), { name: t('soundTitle') }),
+              },
+              h(PlayGlyph),
+              t('soundPreview'),
+            ),
+          ),
+          h(
+            'div',
+            { className: 'jelly-sound-board' },
+            h(
+              'div',
+              { className: 'jelly-sound-board-head' },
+              h('span', { className: 'jelly-sound-board-title' }, t('soundPickLabel')),
+              h('span', { className: 'jelly-sound-board-meta' }, t('soundPickMeta')),
+            ),
+            h(
+              'div',
+              { className: 'jelly-sound-grid', role: 'radiogroup', 'aria-label': t('soundPickLabel') },
+              BUILTIN_SOUNDS.map(option),
+              h(
+                'button',
+                {
+                  type: 'button',
+                  role: 'radio',
+                  className: `jelly-sound-option${custom ? '' : ' is-empty'}`,
+                  'aria-checked': state.soundChoice === 'custom' && custom !== null,
+                  onClick: () => {
+                    if (custom) chooseSound('custom');
+                    else fileRef.current?.click();
+                  },
+                },
+                h(
+                  'span',
+                  { className: 'jelly-sound-wave', 'aria-hidden': 'true' },
+                  SOUND_OPTION_BARS.map((height, index) => h('i', { key: index, style: { height: `${height}px` } })),
+                ),
+                h('span', { className: 'jelly-sound-option-name' }, custom ? t('soundCustom') : t('soundUpload')),
+                h('span', { className: 'jelly-sound-option-meta' }, custom ? formatBytes(custom.size) : '8 MB'),
+              ),
+            ),
+            h(
+              'div',
+              { className: 'jelly-volume-row' },
+              h('label', { className: 'jelly-sound-board-title', htmlFor: 'jelly-sound-volume' }, t('soundVolume')),
+              h('input', {
+                id: 'jelly-sound-volume',
+                className: 'jelly-volume',
+                type: 'range',
+                min: 0,
+                max: 100,
+                step: 1,
+                value: volume,
+                'aria-label': t('soundVolumeAria'),
+                onChange: changeVolume,
+              }),
+              h('output', { className: 'jelly-volume-value', htmlFor: 'jelly-sound-volume' }, `${volume}%`),
+            ),
+            h(
+              'div',
+              { className: 'jelly-upload-row' },
+              h('input', {
+                ref: fileRef,
+                className: 'jelly-file',
+                type: 'file',
+                accept: 'audio/*',
+                onChange: onFile,
+                tabIndex: -1,
+                'aria-hidden': 'true',
+              }),
+              h(
+                'button',
+                {
+                  type: 'button',
+                  className: 'jelly-button',
+                  onClick: () => fileRef.current?.click(),
+                  disabled: busy,
+                },
+                busy ? t('soundReading') : custom ? t('soundReplace') : t('soundUpload'),
+              ),
+              custom
+                ? h('button', { type: 'button', className: 'jelly-button jelly-button-quiet', onClick: removeCustom, disabled: busy }, t('soundRemove'))
+                : null,
+              custom ? h('span', { className: 'jelly-upload-file' }, `${custom.name} · ${formatBytes(custom.size)}`) : null,
+            ),
+            h('p', { className: 'jelly-upload-hint' }, t('soundUploadHint')),
+            note ? h('p', { className: 'jelly-sound-note', role: 'status' }, note) : null,
+          ),
+        ),
+        h(SoundSpecimen, { choice: state.soundChoice, customName: custom?.name ?? '', playing, t }),
+      );
+    }
+
     function AppearanceBootSettings() {
       useLocaleVersion();
       const t = translate();
       const state = useJellySettings();
       const [bootBusy, setBootBusy] = useState(false);
       const [skinBusy, setSkinBusy] = useState(false);
+      const [tab, setTab] = useState(() => tabFromLocation() ?? 'boot');
       const canvasRef = useRef(null);
+      const pageRef = useRef(null);
       const aliveRef = useRef(true);
       const skinBusyTimer = useRef(0);
+
+      /** Keep a tab switch from inheriting the previous chapter's scroll offset. */
+      const resetPageScroll = () => {
+        const page = pageRef.current;
+        if (page?.parentElement) page.parentElement.scrollTop = 0;
+      };
+
+      // Keep the visible chapter in step with the hash: a link, Back/Forward or
+      // another toolbar action can address a chapter without remounting this page.
+      useEffect(() => {
+        const syncFromHash = () => {
+          const next = tabFromLocation();
+          if (next === null) return;
+          if (next !== 'skin') skinBinding?.stopPreview?.();
+          setTab((current) => (current === next ? current : next));
+          resetPageScroll();
+        };
+        globalThis.addEventListener?.('hashchange', syncFromHash);
+        globalThis.addEventListener?.('popstate', syncFromHash);
+        return () => {
+          globalThis.removeEventListener?.('hashchange', syncFromHash);
+          globalThis.removeEventListener?.('popstate', syncFromHash);
+        };
+      }, []);
 
       // Mount one real jelly tank inside the specimen card. It is a true sample
       // of the renderer, not a screenshot; when the card leaves the DOM the
@@ -3247,7 +4270,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
             /* already gone */
           }
         };
-      }, []);
+      }, [tab]);
 
       // Leaving Settings ends an unfinished skin preview; a preview is a look,
       // not a saved state, and its floating pill must not outlive the page.
@@ -3265,6 +4288,20 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
       const choose = (key) => (next) => {
         writeFlag(key, next);
         if (key === SKIN_KEY && next) skinBinding?.stopPreview();
+        // Turning the sound on is itself a user gesture; prime here because the
+        // document-level pointerdown listener already saw the old "off" value.
+        if (key === SOUND_KEY && next) soundPlayer?.prime?.();
+      };
+
+      const selectTab = (next) => {
+        if (next !== 'skin') skinBinding?.stopPreview?.();
+        setTab(next);
+        resetPageScroll();
+        try {
+          globalThis.history?.replaceState?.(null, '', TAB_HASH[next]);
+        } catch {
+          /* the hash is a convenience, never a requirement */
+        }
       };
 
       const previewBoot = async () => {
@@ -3307,7 +4344,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
 
       return h(
         'section',
-        { className: 'jelly-settings', 'aria-labelledby': 'jelly-settings-title' },
+        { ref: pageRef, className: 'jelly-settings', 'aria-labelledby': 'jelly-settings-title' },
         h(
           'header',
           { className: 'jelly-masthead' },
@@ -3320,26 +4357,57 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         ),
         h(
           'nav',
-          { className: 'jelly-index', 'aria-label': t('title') },
+          { className: 'jelly-index', role: 'tablist', 'aria-label': t('title') },
           h(
-            'a',
-            { className: 'jelly-index-item', href: '#jelly-settings-boot' },
+            'button',
+            {
+              type: 'button',
+              className: 'jelly-index-item',
+              id: 'jelly-tab-boot',
+              role: 'tab',
+              'aria-selected': tab === 'boot',
+              'aria-controls': 'jelly-settings-boot',
+              onClick: () => selectTab('boot'),
+            },
             h('span', { className: 'jelly-index-no' }, '01'),
             h('span', { className: 'jelly-index-name' }, t('indexBoot')),
             h('span', { className: 'jelly-index-meta' }, '550C'),
           ),
           h(
-            'a',
-            { className: 'jelly-index-item', href: '#jelly-settings-skin' },
+            'button',
+            {
+              type: 'button',
+              className: 'jelly-index-item',
+              id: 'jelly-tab-skin',
+              role: 'tab',
+              'aria-selected': tab === 'skin',
+              'aria-controls': 'jelly-settings-skin',
+              onClick: () => selectTab('skin'),
+            },
             h('span', { className: 'jelly-index-no' }, '02'),
             h('span', { className: 'jelly-index-name' }, t('indexSkin')),
             h('span', { className: 'jelly-index-meta' }, 'JELLY'),
+          ),
+          h(
+            'button',
+            {
+              type: 'button',
+              className: 'jelly-index-item',
+              id: 'jelly-tab-sound',
+              role: 'tab',
+              'aria-selected': tab === 'sound',
+              'aria-controls': 'jelly-settings-sound',
+              onClick: () => selectTab('sound'),
+            },
+            h('span', { className: 'jelly-index-no' }, '03'),
+            h('span', { className: 'jelly-index-name' }, t('indexSound')),
+            h('span', { className: 'jelly-index-meta' }, 'SOUND'),
           ),
         ),
         // ── 01 开机动画 ──────────────────────────────────────────────────────
         h(
           'section',
-          { className: 'jelly-block', id: 'jelly-settings-boot', 'aria-labelledby': 'jelly-settings-boot-title' },
+          { className: 'jelly-block', id: 'jelly-settings-boot', role: 'tabpanel', 'aria-labelledby': 'jelly-tab-boot jelly-settings-boot-title', hidden: tab !== 'boot' },
           h(
             'div',
             { className: 'jelly-block-head' },
@@ -3384,7 +4452,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
                 ),
               ),
             ),
-            h(BootSpecimen),
+            tab === 'boot' ? h(BootSpecimen) : null,
           ),
           h(
             'p',
@@ -3402,7 +4470,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
         // ── 02 皮肤 ──────────────────────────────────────────────────────────
         h(
           'section',
-          { className: 'jelly-block', id: 'jelly-settings-skin', 'aria-labelledby': 'jelly-settings-skin-title' },
+          { className: 'jelly-block', id: 'jelly-settings-skin', role: 'tabpanel', 'aria-labelledby': 'jelly-tab-skin jelly-settings-skin-title', hidden: tab !== 'skin' },
           h(
             'div',
             { className: 'jelly-block-head' },
@@ -3456,8 +4524,22 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
                 h('li', null, t('skinMetaThree')),
               ),
             ),
-            h(SkinSpecimen, { t, canvasRef }),
+            tab === 'skin' ? h(SkinSpecimen, { t, canvasRef }) : null,
           ),
+        ),
+        // ── 03 提示音 ────────────────────────────────────────────────────────
+        h(
+          'section',
+          { className: 'jelly-block', id: 'jelly-settings-sound', role: 'tabpanel', 'aria-labelledby': 'jelly-tab-sound jelly-settings-sound-title', hidden: tab !== 'sound' },
+          h(
+            'div',
+            { className: 'jelly-block-head' },
+            h('span', { className: 'jelly-block-no' }, '03'),
+            h('h2', { id: 'jelly-settings-sound-title' }, t('sectionSound')),
+            h('span', { className: 'jelly-block-rule', 'aria-hidden': 'true' }),
+          ),
+          h('p', { className: 'jelly-block-hint' }, t('sectionSoundHint')),
+          tab === 'sound' ? h(SoundChapter, { state, t, onToggle: choose(SOUND_KEY) }) : null,
         ),
         h('p', { className: 'jelly-local-note' }, t('localHint')),
       );
@@ -3467,6 +4549,7 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
 
     let skinBinding = null;
     let bootController = null;
+    let soundPlayer = null;
 
     const inject = ['slots', 'locale', 'theme'];
 
@@ -3548,6 +4631,25 @@ body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:scree
           tag.remove();
         };
       }, 'appearance & boot: stylesheet');
+
+      // The player owns one AudioContext and its gesture listeners for the
+      // lifetime of the plugin. The completion signal is optional: a profile
+      // without ui-session still gets the Settings page and its previews.
+      ctx.effect(() => {
+        const player = createSoundPlayer();
+        soundPlayer = player;
+        return () => {
+          if (soundPlayer === player) soundPlayer = null;
+          player.dispose();
+          closeSoundDatabase();
+        };
+      }, 'appearance & boot: completion sound');
+      ctx.inject(['uiSession', 'sessions'], (soundCtx) =>
+        soundCtx.effect(
+          () => watchCompletions(soundCtx.uiSession, soundCtx.sessions, () => soundPlayer?.playCompletion()),
+          'appearance & boot: completion signal',
+        ),
+      );
 
       const binding = createSkinBinding(ctx);
       skinBinding = binding;

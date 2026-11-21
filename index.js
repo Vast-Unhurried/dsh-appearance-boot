@@ -58,9 +58,9 @@ const FIRST_FRAME_SCRIPT =
   FIRST_FRAME_GLOBAL +
   '={end:function(){root.classList.remove("dsh-jelly-boot-first")}};' +
   'root.classList.add("dsh-jelly-boot-first");' +
-  'window.setTimeout(function(){if(!window.__dshJellyBootMounted)window.' +
+  'window.setTimeout(function(){var cover=window.' +
   FIRST_FRAME_GLOBAL +
-  '.end()},' +
+  ';if(cover&&typeof cover.end==="function"&&!window.__dshJellyBootMounted)cover.end()},' +
   String(FIRST_FRAME_MAX_MS) +
   ');' +
   '})()'
@@ -113,7 +113,7 @@ function sendBootPage(req, res) {
     page = loadBootPage()
   } catch {
     res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' })
-    res.end('not found')
+    res.end(req.method === 'HEAD' ? undefined : 'not found')
     return
   }
   const ifNoneMatch = req.headers['if-none-match']
@@ -131,6 +131,7 @@ function sendBootPage(req, res) {
   const scriptSource = page.scriptHash == null ? "'unsafe-inline'" : `'sha256-${page.scriptHash}'`
   res.writeHead(200, {
     'content-type': 'text/html; charset=utf-8',
+    'content-length': String(page.body.length),
     'cache-control': 'no-cache',
     etag: page.etag,
     'content-security-policy':

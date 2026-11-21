@@ -14,6 +14,17 @@ const TEMP = `${OUTPUT}.tmp-${process.pid}.js`;
 const read = (name) => readFileSync(new URL(name, ROOT), 'utf8').replace(/\r\n/g, '\n');
 const files = ['src/style.js', 'src/jelly.js', 'src/plugin.js'];
 
+// The boot page is not part of client.js, but a broken inline script would
+// otherwise only surface when the animation is opened. Check it here too.
+const bootHtml = readFileSync(new URL('boot/550c.html', ROOT), 'utf8');
+const bootScripts = [...bootHtml.matchAll(/<script>([\s\S]*?)<\/script>/g)];
+if (bootScripts.length !== 1) throw new Error(`boot page must contain exactly one inline script, found ${bootScripts.length}`);
+try {
+  new Script(bootScripts[0][1]);
+} catch (error) {
+  throw new Error(`boot page script does not parse: ${error.message}`);
+}
+
 const header = `window.__ModuleLoader__.load({
   id: '@local/dsh-appearance-boot',
   factory(require) {

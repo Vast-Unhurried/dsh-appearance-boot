@@ -1,12 +1,12 @@
 {
   "name": "@local/dsh-appearance-boot",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "engines": {
-    "dsh": ">=0.2.2-rc.2 <0.3.0"
+    "dsh": ">=0.2.2-rc.5 <0.3.0"
   },
-  "description": "Appearance & Boot: a home for interface skins and boot animations. One Settings page holds independent chapters for each, with switches and live previews.",
+  "description": "Appearance & Boot: a home for interface skins, boot animations and a task-completion sound. One Settings page holds tab-filtered chapters for the boot animation, the jellyfish skin and the completion tone.",
   "icon": "./icon.svg",
   "exports": {
     ".": "./index.js",
@@ -34,7 +34,8 @@
       "immediately": true,
       "inject": [
         "@deepseek-ai/dsh-client-locale",
-        "@deepseek-ai/dsh-client-ui-theme"
+        "@deepseek-ai/dsh-client-ui-theme",
+        "@deepseek-ai/dsh-client-ui-session"
       ]
     }
   }

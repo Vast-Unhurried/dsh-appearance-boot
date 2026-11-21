@@ -1,9 +1,9 @@
 # The Appearance & Boot bundle.
 #
 # One row: the plugin's Client half registers the Settings › 外观与启动 page,
-# the boot/skin switches, the boot controller and the still-water skin; its Host
-# half serves boot/550c.html and injects the matching first frame into every
-# index response.
+# the boot/skin/sound switches, the boot controller, the still-water skin and
+# the task-completion player; its Host half serves boot/550c.html and injects
+# the matching first frame into every index response.
 - insert:
     - id: dsh-appearance-boot
       name: '@local/dsh-appearance-boot'

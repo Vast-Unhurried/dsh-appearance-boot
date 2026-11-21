@@ -247,6 +247,9 @@
 (() => {
 "use strict";
 const $ = s => document.querySelector(s);
+const escapeHtml = value => String(value).replace(/[&<>"']/g, char => ({
+  '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+}[char]));
 if (window.name === 'jelly-boot-preview') document.documentElement.setAttribute('data-preview', 'true');
 
 let finished = false;
@@ -460,9 +463,10 @@ function setProgress(p, nodeLabel){
 
 /* ===== 窗口系统 ===== */
 let zCounter = 500;
-/* opt.name/opt.status/opt.content are literal templates from this file. Keep it
-   that way: those fields are rendered as HTML; never pass network, storage or
-   user-provided text through them without escaping or using textContent. */
+/* title/status values and kvRows/miniLog entries are escaped here. opt.content
+   is a trusted HTML template built only from literals in this file; never pass
+   network, storage or user-provided text into it without escaping or using DOM
+   textContent. */
 function openWindow(opt){
   return new Promise(resolve => {
     const el = document.createElement("div");
@@ -472,12 +476,12 @@ function openWindow(opt){
     el.style.left = pos.x + "px"; el.style.top = pos.y + "px"; el.style.zIndex = zCounter;
     const title = document.createElement("div");
     title.className = "wp-title";
-    title.innerHTML = `<span class="wp-ico">${opt.icon||"▣"}</span><span class="wp-name">${opt.name||"WINDOW"}</span><span class="wp-controls"><span class="wp-btn" data-act="min">─</span><span class="wp-btn" data-act="max">□</span><span class="wp-btn" data-act="close">✕</span></span>`;
+    title.innerHTML = `<span class="wp-ico">${escapeHtml(opt.icon||"▣")}</span><span class="wp-name">${escapeHtml(opt.name||"WINDOW")}</span><span class="wp-controls"><span class="wp-btn" data-act="min">─</span><span class="wp-btn" data-act="max">□</span><span class="wp-btn" data-act="close">✕</span></span>`;
     el.appendChild(title);
     if (opt.kind === "danger"){ const s = document.createElement("div"); s.className = "wp-alert-strip"; el.appendChild(s); }
     const body = document.createElement("div"); body.className = "wp-body"; body.innerHTML = opt.content || ""; el.appendChild(body);
     const status = document.createElement("div"); status.className = "wp-status";
-    status.innerHTML = `<span>${opt.status||"READY"}</span><span class="spacer"></span><span class="wp-clock">${nowStr()}</span>`;
+    status.innerHTML = `<span>${escapeHtml(opt.status||"READY")}</span><span class="spacer"></span><span class="wp-clock">${nowStr()}</span>`;
     el.appendChild(status);
     document.body.appendChild(el); activeWindows.push(el);
     const clockEl = status.querySelector(".wp-clock");
@@ -534,10 +538,10 @@ function nowStr(){
   return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")+":"+String(d.getSeconds()).padStart(2,"0");
 }
 function kvRows(pairs){
-  return pairs.map(([k,v,c]) => `<div class="wp-row"><span class="k">${k}</span><span class="v ${c||""}">${v}</span></div>`).join("");
+  return pairs.map(([k,v,c]) => `<div class="wp-row"><span class="k">${escapeHtml(k)}</span><span class="v ${escapeHtml(c||"")}">${escapeHtml(v)}</span></div>`).join("");
 }
 function miniLog(lines, cls = ""){
-  return `<div class="wp-log ${cls}">${lines.map(l => `<div class="ll ${l.c||""}">${l.t||l}</div>`).join("")}</div>`;
+  return `<div class="wp-log ${escapeHtml(cls)}">${lines.map(l => `<div class="ll ${escapeHtml(l.c||"")}">${escapeHtml(l.t||l)}</div>`).join("")}</div>`;
 }
 
 /* ===== 主流程 ===== */

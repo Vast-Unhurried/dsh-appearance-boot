@@ -201,13 +201,15 @@ body[data-dsh-appearance-boot][data-ds-dark-theme] .jelly-skin-canvas{
 .jelly-settings h1{margin:0;font:600 31px/1.02 var(--jelly-skin-text);letter-spacing:-.04em}
 .jelly-lede{margin:10px 0 0;max-width:64ch;color:var(--jelly-skin-ink-2);font-size:12.5px;line-height:1.8}
 .jelly-index{display:flex;align-items:stretch;margin-top:16px;border-top:1px solid var(--jelly-skin-rule);border-bottom:1px solid var(--jelly-skin-rule)}
-.jelly-index-item{display:flex;flex:1 1 0;align-items:baseline;gap:8px;min-width:0;padding:11px 12px 10px;border-bottom:2px solid transparent;color:var(--jelly-skin-ink-2);text-decoration:none;font:500 13px/1.2 var(--jelly-skin-text)}
+.jelly-index-item{display:flex;flex:1 1 0;align-items:baseline;gap:8px;min-width:0;padding:11px 12px 10px;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--jelly-skin-ink-2);text-align:left;text-decoration:none;font:500 13px/1.2 var(--jelly-skin-text);cursor:pointer}
 .jelly-index-item + .jelly-index-item{border-left:1px solid var(--jelly-skin-rule)}
 .jelly-index-item:hover{color:var(--jelly-skin-ink);background:var(--jelly-skin-hover)}
+.jelly-index-item[aria-selected="true"]{color:var(--jelly-skin-ink);border-bottom-color:var(--jelly-skin-accent);background:var(--jelly-skin-accent-soft)}
 .jelly-index-no{flex:none;color:var(--jelly-skin-accent);font:500 11px/1 "Cascadia Mono",Consolas,monospace;letter-spacing:.04em}
 .jelly-index-name{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .jelly-index-meta{margin-left:auto;color:var(--jelly-skin-ink-3);font:500 10px/1 "Cascadia Mono",Consolas,monospace;letter-spacing:.12em}
 .jelly-block{margin-top:30px;scroll-margin-top:18px}
+.jelly-block[hidden]{display:none}
 .jelly-block-head{display:flex;align-items:baseline;gap:9px;padding:0 0 7px;border-bottom:1px solid var(--jelly-skin-rule)}
 .jelly-block-no{flex:none;color:var(--jelly-skin-accent);font:600 10.5px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.05em}
 .jelly-block-head h2{margin:0;font:600 15px/1.3 var(--jelly-skin-text);letter-spacing:.02em}
@@ -234,6 +236,46 @@ body[data-dsh-appearance-boot][data-ds-dark-theme] .jelly-skin-canvas{
 .jelly-meta{display:flex;flex-wrap:wrap;gap:6px 14px;margin:14px 0 0;padding:10px 0 0;border-top:1px solid var(--jelly-skin-rule);list-style:none}
 .jelly-meta li{display:flex;align-items:center;gap:6px;color:var(--jelly-skin-ink-3);font:500 10.5px/1.4 "Cascadia Mono",Consolas,monospace;letter-spacing:.04em}
 .jelly-meta li::before{content:"";width:4px;height:4px;background:var(--jelly-skin-accent)}
+
+/* the 03 sound board: a specimen of quiet signals, not a media player */
+.jelly-sound-board{margin-top:16px;padding-top:14px;border-top:1px solid var(--jelly-skin-rule)}
+.jelly-sound-board-head{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.jelly-sound-board-title{color:var(--jelly-skin-ink-3);font:500 9.5px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.14em;text-transform:uppercase}
+.jelly-sound-board-meta{color:var(--jelly-skin-ink-3);font:500 9px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.08em}
+.jelly-sound-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:9px}
+.jelly-sound-option{display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0;padding:9px 10px 8px;border:1px solid var(--jelly-skin-rule-2);background:transparent;color:var(--jelly-skin-ink-2);font:inherit;text-align:left;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.jelly-sound-option:hover{border-color:var(--jelly-skin-ink-3);background:var(--jelly-skin-hover);color:var(--jelly-skin-ink)}
+.jelly-sound-option[aria-checked="true"]{border-color:var(--jelly-skin-ink);background:var(--jelly-skin-accent-soft);color:var(--jelly-skin-ink)}
+.jelly-sound-option.is-empty{border-style:dashed}
+.jelly-sound-wave{display:flex;align-items:flex-end;gap:2px;height:12px}
+.jelly-sound-wave i{display:block;width:2px;background:currentColor;opacity:.5}
+.jelly-sound-option[aria-checked="true"] .jelly-sound-wave i{opacity:.85}
+.jelly-sound-option-name{min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font:500 11px/1.2 var(--jelly-skin-text)}
+.jelly-sound-option-meta{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--jelly-skin-ink-3);font:500 8.5px/1.2 "Cascadia Mono",Consolas,monospace;letter-spacing:.1em;text-transform:uppercase}
+.jelly-volume-row{display:flex;align-items:center;gap:12px;margin-top:15px;padding-top:13px;border-top:1px solid var(--jelly-skin-rule)}
+.jelly-volume{appearance:none;-webkit-appearance:none;flex:1;min-width:0;height:16px;margin:0;padding:0;background:transparent;cursor:pointer}
+.jelly-volume::-webkit-slider-runnable-track{height:1px;background:var(--jelly-skin-rule-2)}
+.jelly-volume::-moz-range-track{height:1px;background:var(--jelly-skin-rule-2)}
+.jelly-volume::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:10px;height:10px;margin-top:-4.5px;border:1px solid var(--jelly-skin-ink);background:var(--jelly-skin-sheet);cursor:pointer}
+.jelly-volume::-moz-range-thumb{width:10px;height:10px;border:1px solid var(--jelly-skin-ink);border-radius:0;background:var(--jelly-skin-sheet);cursor:pointer}
+.jelly-volume:focus-visible{outline:2px solid var(--jelly-skin-focus);outline-offset:4px}
+.jelly-volume-value{flex:none;width:36px;color:var(--jelly-skin-ink);font:500 10px/1 "Cascadia Mono",Consolas,monospace;text-align:right}
+.jelly-upload-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+.jelly-file{display:none}
+.jelly-button-quiet{border-color:transparent;color:var(--jelly-skin-ink-3)}
+.jelly-upload-file{min-width:0;max-width:30ch;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--jelly-skin-ink-2);font:500 10px/1.4 "Cascadia Mono",Consolas,monospace;letter-spacing:.02em}
+.jelly-upload-hint{margin:9px 0 0;color:var(--jelly-skin-ink-3);font-size:10.5px;line-height:1.6}
+.jelly-sound-note{margin:8px 0 0;color:var(--jelly-skin-ink-2);font-size:10.5px;line-height:1.6}
+.jelly-sound-specimen{position:relative;display:flex;flex-direction:column;gap:14px;min-height:150px;padding:12px 15px 13px;border-top:1px solid var(--jelly-skin-rule-2);background:var(--jelly-skin-sheet-2);overflow:hidden}
+.jelly-sound-specimen::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(to bottom,var(--jelly-skin-rule) 0,var(--jelly-skin-rule) 1px,transparent 1px,transparent 4px);opacity:.5;pointer-events:none}
+.jelly-sound-specimen-head{position:relative;z-index:1;display:flex;justify-content:space-between;gap:12px;color:var(--jelly-skin-ink-3);font:500 8.5px/1.3 "Cascadia Mono",Consolas,monospace;letter-spacing:.14em}
+.jelly-sound-specimen-name{max-width:50%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--jelly-skin-ink-2);text-transform:uppercase}
+.jelly-sound-bars{position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:2px;flex:1;min-height:52px;padding:8px 0}
+.jelly-sound-bars i{display:block;width:2px;max-height:100%;background:var(--jelly-skin-ink);opacity:.34}
+.jelly-sound-specimen.is-playing .jelly-sound-bars i{animation:jellySoundBar .38s ease-in-out infinite alternate;opacity:.75}
+.jelly-sound-specimen-foot{position:relative;z-index:1;display:flex;gap:18px;color:var(--jelly-skin-ink-3);font:500 8px/1.3 "Cascadia Mono",Consolas,monospace;letter-spacing:.12em}
+@keyframes jellySoundBar{from{transform:scaleY(.45);opacity:.35}to{transform:scaleY(1);opacity:.9}}
+
 .jelly-footnote{margin:10px 0 0;color:var(--jelly-skin-ink-3);font-size:10.5px;line-height:1.7}
 .jelly-footnote a{color:var(--jelly-skin-ink);text-decoration:underline;text-underline-offset:3px}
 .jelly-local-note{margin:28px 0 0;padding:12px 0 0;border-top:1px solid var(--jelly-skin-rule);color:var(--jelly-skin-ink-3);font:500 10.5px/1.6 "Cascadia Mono",Consolas,monospace;letter-spacing:.06em}
@@ -272,6 +314,10 @@ body[data-dsh-appearance-boot][data-ds-dark-theme] .jelly-skin-canvas{
 body[data-ds-dark-theme] .jelly-settings .jelly-skin-canvas{mix-blend-mode:screen}
 @container (max-width:620px){
   .jelly-stage{grid-template-columns:88px minmax(0,1fr);min-height:210px}
+}
+@container (max-width:460px){
+  .jelly-sound-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .jelly-sound-specimen{min-height:150px}
 }
 
 /* ── frame-wide boot overlay and the temporary skin-preview pill ────────── */
